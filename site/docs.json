@@ -10,8 +10,8 @@
   "colors": {
     "primary": "#6366f1"
   },
-  "logo": "/img/logo.svg",
-  "favicon": "/img/favicon.ico",
+  "logo": "/img/context-graph-logo.svg",
+  "favicon": "/img/context-graph-favicon.svg",
   "social": [
     {
       "icon": "github",
@@ -19,14 +19,12 @@
       "href": "https://github.com/neo4j-labs/create-context-graph"
     }
   ],
-  "header": {
-    "website": "https://create-context-graph.dev/"
-  },
   "navigation": {
     "groups": [
       {
         "group": "Getting Started",
         "pages": [
+          "index",
           "docs/intro",
           "docs/quick-start",
           "docs/whats-new"
