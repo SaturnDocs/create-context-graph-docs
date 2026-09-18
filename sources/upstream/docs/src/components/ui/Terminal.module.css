@@ -1,0 +1,140 @@
+.terminal {
+  background: var(--color-terminal-bg, #1E1E1E);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  width: 100%;
+  max-width: 720px;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px;
+  position: relative;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotRed {
+  background: #FF5F57;
+}
+
+.dotYellow {
+  background: #FFBD2E;
+}
+
+.dotGreen {
+  background: #28C840;
+}
+
+.titleText {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: var(--color-terminal-purple, #A78BFA);
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.copyButton {
+  margin-left: auto;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.copyButton:hover {
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copied {
+  color: var(--color-terminal-green, #4ADE80);
+  border-color: var(--color-terminal-green, #4ADE80);
+}
+
+.body {
+  padding: 16px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: clamp(12px, 1.4vw, 14px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  min-height: 60px;
+  overflow-x: auto;
+}
+
+.bodyFixedHeight {
+  height: 340px;
+  overflow-y: hidden;
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .terminal {
+  background: #F5F5F5;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .titleBar {
+  background: rgba(0, 0, 0, 0.04);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .body {
+  color: #1E1E1E;
+}
+
+[data-theme="light"] .copyButton {
+  color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .copyButton:hover {
+  color: rgba(0, 0, 0, 0.7);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile: reduce fixed height, tighter padding */
+@media (max-width: 640px) {
+  .body {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .bodyFixedHeight {
+    height: 280px;
+  }
+
+  .titleBar {
+    padding: 8px 12px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .titleText {
+    font-size: 10px;
+  }
+}

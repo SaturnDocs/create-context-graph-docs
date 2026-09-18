@@ -1,0 +1,220 @@
+/* ===== Hero Section ===== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0a1a 0%, #0d1117 40%, #0a1628 100%);
+  overflow: hidden;
+  padding: 2rem 0 2rem;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 960px;
+}
+
+.title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0;
+  max-width: 700px;
+  background: linear-gradient(135deg, #ffffff 30%, #A5B4FC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 520px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background: var(--color-primary-labs, #6366F1);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ctaPrimary:hover {
+  background: var(--color-primary-labs-dark, #4F46E5);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.ctaSecondary {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.ctaSecondary:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.heroAnimation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.previewLabel {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ===== Bottom CTA Section ===== */
+.bottomCta {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #0a0a1a 0%, #0d1117 100%);
+}
+
+.bottomCtaInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bottomCtaTitle {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+[data-theme="dark"] .bottomCtaTitle {
+  color: white;
+}
+
+/* Blinking cursor for bottom CTA terminal */
+.blinkingCursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--color-terminal-green, #4ADE80);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===== Light mode overrides ===== */
+[data-theme="light"] .hero {
+  background: linear-gradient(135deg, #f8f9fb 0%, #eef1f6 40%, #e8ecf4 100%);
+}
+
+[data-theme="light"] .title {
+  background: linear-gradient(135deg, #1a1a2e 30%, #6366F1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .tagline {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .ctaSecondary {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .ctaSecondary:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="light"] .bottomCta {
+  background: linear-gradient(135deg, #f8f9fb 0%, #eef1f6 100%);
+}
+
+[data-theme="light"] .previewLabel {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Responsive ===== */
+
+/* Tablet range: Docusaurus switches to hamburger nav at 996px */
+@media (max-width: 996px) and (min-width: 769px) {
+  .hero {
+    padding: 1.5rem 0 1.5rem;
+  }
+
+  .heroContent {
+    padding: 1rem 1.5rem;
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem 0 1rem;
+  }
+
+  .heroContent {
+    padding: 1.5rem 1rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .bottomCta {
+    padding: 3rem 1.25rem;
+  }
+
+  .title {
+    line-height: 1.3;
+  }
+
+  .bottomCtaTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .blinkingCursor {
+    animation: none;
+    opacity: 1;
+  }
+}

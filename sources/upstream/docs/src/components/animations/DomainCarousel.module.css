@@ -1,0 +1,241 @@
+.section {
+  padding: 5rem 0;
+  overflow: hidden;
+  background: var(--ifm-background-color);
+}
+
+.header {
+  text-align: center;
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.1rem;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  padding: 0 2rem 1rem;
+  cursor: grab;
+  user-select: none;
+}
+
+.track:active {
+  cursor: grabbing;
+}
+
+.trackContainer {
+  position: relative;
+}
+
+.trackFade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1rem;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, var(--ifm-background-color));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dragHint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-500);
+  margin-top: 0.75rem;
+  padding: 0 2rem;
+}
+
+.catalogLink {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.catalogLink:hover {
+  text-decoration: underline;
+}
+
+.cardWrapper {
+  flex-shrink: 0;
+  width: 280px;
+  perspective: 800px;
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 220px;
+}
+
+.card {
+  position: relative;
+  width: 280px;
+  height: 220px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.cardFace {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+[data-theme="light"] .cardFace {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.cardFront {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardEmoji {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.cardName {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.entityPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: auto;
+}
+
+.entityPill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--color-primary-labs, #6366F1);
+  color: white;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.cardCommand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--color-terminal-green, #4ADE80);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.backTitle {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.backLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-terminal-gray, #9CA3AF);
+  margin-top: 8px;
+}
+
+.backEntityList {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .backEntityList {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Keyboard / focus styles */
+.cardWrapper:focus-within .card,
+.card:focus {
+  transform: rotateY(180deg);
+  outline: 2px solid var(--color-primary-labs, #6366F1);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Mobile: horizontal scroll instead of drag */
+@media (max-width: 640px) {
+  .track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1.25rem 1rem;
+  }
+
+  .cardWrapper {
+    scroll-snap-align: center;
+    width: 260px;
+  }
+
+  .card {
+    width: 260px;
+  }
+
+  .trackFade {
+    width: 40px;
+  }
+
+  .dragHint {
+    font-size: 0.75rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
