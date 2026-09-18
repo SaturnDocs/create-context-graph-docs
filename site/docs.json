@@ -12,6 +12,9 @@
   },
   "logo": "/img/context-graph-logo.svg",
   "favicon": "/img/context-graph-favicon.svg",
+  "header": {
+    "showName": true
+  },
   "social": [
     {
       "icon": "github",
@@ -20,64 +23,74 @@
     }
   ],
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "docs/intro",
-          "docs/quick-start",
-          "docs/whats-new"
+        "tab": "Docs",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "docs/intro",
+              "docs/quick-start",
+              "docs/whats-new",
+              "index"
+            ]
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "docs/tutorials/first-context-graph-app",
+              "docs/tutorials/customizing-domain-ontology",
+              "docs/tutorials/linear-context-graph",
+              "docs/tutorials/google-workspace-decisions",
+              "docs/tutorials/claude-code-sessions",
+              "docs/tutorials/import-chat-history"
+            ]
+          },
+          {
+            "group": "How-To Guides",
+            "pages": [
+              "docs/how-to/use-nams",
+              "docs/how-to/configure-memory-providers",
+              "docs/how-to/import-saas-data",
+              "docs/how-to/import-local-files",
+              "docs/how-to/add-custom-domain",
+              "docs/how-to/switch-frameworks",
+              "docs/how-to/use-neo4j-aura",
+              "docs/how-to/use-neo4j-local",
+              "docs/how-to/use-docker",
+              "docs/how-to/connect-claude-desktop"
+            ]
+          },
+          {
+            "group": "Explanation",
+            "pages": [
+              "docs/explanation/memory-backends",
+              "docs/explanation/ccg-edges",
+              "docs/explanation/how-domain-ontologies-work",
+              "docs/explanation/three-memory-types",
+              "docs/explanation/why-context-graphs",
+              "docs/explanation/how-decision-traces-work"
+            ]
+          }
         ]
       },
       {
-        "group": "Tutorials",
-        "pages": [
-          "docs/tutorials/first-context-graph-app",
-          "docs/tutorials/customizing-domain-ontology",
-          "docs/tutorials/linear-context-graph",
-          "docs/tutorials/google-workspace-decisions",
-          "docs/tutorials/claude-code-sessions",
-          "docs/tutorials/import-chat-history"
-        ]
-      },
-      {
-        "group": "How-To Guides",
-        "pages": [
-          "docs/how-to/use-nams",
-          "docs/how-to/configure-memory-providers",
-          "docs/how-to/import-saas-data",
-          "docs/how-to/import-local-files",
-          "docs/how-to/add-custom-domain",
-          "docs/how-to/switch-frameworks",
-          "docs/how-to/use-neo4j-aura",
-          "docs/how-to/use-neo4j-local",
-          "docs/how-to/use-docker",
-          "docs/how-to/connect-claude-desktop"
-        ]
-      },
-      {
-        "group": "Reference",
-        "pages": [
-          "docs/reference/cli-options",
-          "docs/reference/ontology-yaml-schema",
-          "docs/reference/generated-project-structure",
-          "docs/reference/framework-comparison",
-          "docs/reference/domain-catalog",
-          "docs/reference/google-workspace-schema",
-          "docs/reference/claude-code-schema",
-          "docs/reference/chat-import-schema"
-        ]
-      },
-      {
-        "group": "Explanation",
-        "pages": [
-          "docs/explanation/memory-backends",
-          "docs/explanation/ccg-edges",
-          "docs/explanation/how-domain-ontologies-work",
-          "docs/explanation/three-memory-types",
-          "docs/explanation/why-context-graphs",
-          "docs/explanation/how-decision-traces-work"
+        "tab": "CLI Reference",
+        "groups": [
+          {
+            "group": "Reference",
+            "pages": [
+              "docs/reference/cli-options",
+              "docs/reference/ontology-yaml-schema",
+              "docs/reference/generated-project-structure",
+              "docs/reference/framework-comparison",
+              "docs/reference/domain-catalog",
+              "docs/reference/google-workspace-schema",
+              "docs/reference/claude-code-schema",
+              "docs/reference/chat-import-schema"
+            ]
+          }
         ]
       }
     ]
