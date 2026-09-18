@@ -24,6 +24,36 @@ for (const page of allPages) {
   }
 }
 
+const landingHtml = await readFile(path.join(build, "index.html"), "utf8");
+if (!landingHtml.includes('data-gs-layout="landing"')) {
+  failures.push("/: rendered homepage does not use the landing-page frame");
+}
+if (!landingHtml.includes('class="gs-landing-hero ')) {
+  failures.push("/: rendered homepage is missing its landing hero");
+}
+if (landingHtml.includes('class="gs-page-header')) {
+  failures.push("/: rendered homepage includes the documentation page header");
+}
+if (landingHtml.includes('data-gs-toc')) {
+  failures.push("/: rendered homepage includes the documentation table of contents");
+}
+for (const asset of ["/img/app-three-panel.png", "/img/memory-architecture.png"]) {
+  if (!landingHtml.includes(`src="${asset}"`)) {
+    failures.push(`/: rendered homepage does not use original-site asset ${asset}`);
+  }
+}
+
+const documentationHtml = await readFile(path.join(build, "docs", "intro", "index.html"), "utf8");
+if (!documentationHtml.includes('data-gs-layout="docs"')) {
+  failures.push("/docs/intro: rendered documentation page does not use the documentation frame");
+}
+if (!documentationHtml.includes('class="gs-page-header')) {
+  failures.push("/docs/intro: rendered documentation page is missing its page header");
+}
+if (!documentationHtml.includes('data-gs-toc')) {
+  failures.push("/docs/intro: rendered documentation page is missing its table of contents");
+}
+
 for (const asset of [...manifest.assets.filter((entry) => entry.published), ...manifest.brandAssets]) {
   const built = await readFile(path.join(build, "img", path.basename(asset.output))).catch(() => null);
   if (built === null) failures.push(`${asset.output}: built asset is missing`);

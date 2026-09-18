@@ -44,6 +44,20 @@ for (const assertion of manifest.homepageCopyAssertions) {
   if (!homepage.includes(assertion)) failures.push(`landing-page adaptation is missing upstream copy: ${assertion}`);
 }
 
+const adaptedHomepageSource = await readFile(path.join(root, "sources", "adapted", "index.mdx"), "utf8");
+const generatedHomepageSource = await readFile(path.join(root, "site", "pages", "index.mdx"), "utf8");
+for (const [label, source] of [
+  ["reviewed landing-page adaptation", adaptedHomepageSource],
+  ["generated landing page", generatedHomepageSource],
+]) {
+  if (!/^pageLayout: landing$/m.test(source)) {
+    failures.push(`${label} does not declare the SaturnDocs landing-page layout`);
+  }
+  for (const asset of ["/img/app-three-panel.png", "/img/memory-architecture.png"]) {
+    if (!source.includes(asset)) failures.push(`${label} does not use original-site asset ${asset}`);
+  }
+}
+
 for (const asset of manifest.assets) {
   const source = await readFile(path.join(root, "sources", "upstream", asset.source));
   if (sha256(source) !== asset.sha256) failures.push(`${asset.source}: source asset digest changed`);
@@ -99,7 +113,7 @@ if (failures.length > 0) {
   console.log(
     `Verified ${manifest.pageCount} source pages, ${manifest.pageCount} generated pages, ` +
       `${manifest.assetCount} source assets, ${manifest.publishedAssetCount} published assets, ` +
-      "landing-page copy provenance, and complete navigation coverage.",
+      "landing-page layout and copy provenance, and complete navigation coverage.",
   );
 }
 
