@@ -1,18 +1,10 @@
 ---
 title: "AI agents with graph memory, scaffolded in seconds."
+pageLayout: landing
 ---
 
-> 📦 You are viewing docs for **create-context-graph v0.9.5**
-
-Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing.
-
-[Get Started](/docs/intro) · [View on GitHub →](https://github.com/neo4j-labs/create-context-graph)
-
-```console
-$ uvx create-context-graph my-healthcare-app
-```
-
-<Accordion title="Create Context Graph v0.6.0">
+<LandingHero title="AI agents with graph memory, scaffolded in seconds." description="Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing." eyebrow="📦 You are viewing docs for create-context-graph v0.9.5" primaryLabel="Get Started" primaryHref="/docs/intro" secondaryLabel="View on GitHub" secondaryHref="https://github.com/neo4j-labs/create-context-graph">
+  <TerminalWindow title="Create Context Graph v0.6.0" command="$ uvx create-context-graph my-healthcare-app">
   ✓ Data source: Demo data (recommended)
 
   ✓ Domain: healthcare
@@ -38,9 +30,14 @@ $ uvx create-context-graph my-healthcare-app
   Backend: `http://localhost:8000`
 
   `$ cd my-healthcare-app && make start`
-</Accordion>
+</TerminalWindow>
+</LandingHero>
 
-## See what you'll build
+<LandingSection title="See what you'll build">
+
+<Frame surface="light">
+  <img src="/img/app-three-panel.png" alt="The generated app's three-panel layout: chat interface, graph visualization, and document browser" />
+</Frame>
 
 > Show me patients with diabetes who were treated in the last 30 days
 
@@ -69,10 +66,13 @@ RETURN p, c, t
 1. Identify patients with diabetes condition
 2. Filter treatments within 30-day window
 3. Aggregate by treatment type and provider
+</LandingSection>
 
-## Three memory types. One connected graph.
+<LandingSection title="Three memory types. One connected graph." description="Scroll to explore each memory layer" tone="accent">
 
-Scroll to explore each memory layer
+<Frame surface="light">
+  <img src="/img/memory-architecture.png" alt="Three memory types working together during a chat request" />
+</Frame>
 
 <CardGroup cols={2}>
   <Card title="Short-Term Memory">
@@ -96,10 +96,9 @@ Scroll to explore each memory layer
     Three memory types, one connected graph. This is what makes agents remember, reason, and explain.
   </Card>
 </CardGroup>
+</LandingSection>
 
-## 23 domains. Your industry, ready to go.
-
-Each domain includes a complete ontology, demo data, agent tools, and graph schema
+<LandingSection title="23 domains. Your industry, ready to go." description="Each domain includes a complete ontology, demo data, agent tools, and graph schema" tone="muted">
 
 <AccordionGroup>
   <Accordion title="🏥 Healthcare">
@@ -305,10 +304,9 @@ Each domain includes a complete ontology, demo data, agent tools, and graph sche
 Drag to explore · Hover to flip
 
 [See all 23 domains →](/docs/reference/domain-catalog)
+</LandingSection>
 
-## Bring your favorite agent framework.
-
-PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more
+<LandingSection title="Bring your favorite agent framework." description="PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more">
 
 <AccordionGroup>
   <Accordion title="PydanticAI — Full Streaming">
@@ -382,10 +380,9 @@ def query_knowledge_graph(
 </AccordionGroup>
 
 **Full Streaming** = token-by-token text + tool events · **Tool Events** = real-time tool visualization with text at completion
+</LandingSection>
 
-## From zero to running app in 4 commands.
-
-Scaffold, install, seed, and start
+<LandingSection title="From zero to running app in 4 commands." description="Scaffold, install, seed, and start" tone="accent">
 
 <Steps>
   <Step title="Scaffold">
@@ -407,37 +404,35 @@ Scaffold, install, seed, and start
   <Stat value={8} label="Agent Frameworks" />
   <Stat value={1033} label="Passing Tests" />
 </Columns>
+</LandingSection>
 
-## Ready to build your context graph?
+<LandingCta title="Ready to build your context graph?" primaryLabel="Get Started" primaryHref="/docs/intro" secondaryLabel="View on GitHub" secondaryHref="https://github.com/neo4j-labs/create-context-graph">
+  <TerminalWindow title="Console" command="$ uvx create-context-graph" />
+</LandingCta>
 
-```console
-$ uvx create-context-graph
-```
-
-[Get Started](/docs/intro) · [View on GitHub →](https://github.com/neo4j-labs/create-context-graph)
-
-## Documentation
-
-- [Getting Started](/docs/intro)
-- [Quick Start](/docs/quick-start)
-- [Tutorials](/docs/tutorials/first-context-graph-app)
-- [How-To Guides](/docs/how-to/import-saas-data)
-- [CLI Reference](/docs/reference/cli-options)
-- [YAML Schema](/docs/reference/ontology-yaml-schema)
-- [Explanation](/docs/explanation/why-context-graphs)
-
-## Community
-
-- [Neo4j Community Forum](https://community.neo4j.com/)
-- [GitHub Issues](https://github.com/neo4j-labs/create-context-graph/issues)
-
-## More
-
-- [Neo4j Labs](https://neo4j.com/labs/)
-- [neo4j-agent-memory](https://github.com/neo4j-labs/agent-memory)
-
-## Project
-
-- [License (Apache 2.0)](https://github.com/neo4j-labs/create-context-graph/blob/main/LICENSE)
-- [Changelog](https://github.com/neo4j-labs/create-context-graph/releases)
-- [Contributing](https://github.com/neo4j-labs/create-context-graph/blob/main/CONTRIBUTING.md)
+<LandingSection title="Documentation" tone="muted">
+  <Columns cols={4}>
+    <Card>
+      - [Getting Started](/docs/intro)
+      - [Quick Start](/docs/quick-start)
+      - [Tutorials](/docs/tutorials/first-context-graph-app)
+      - [How-To Guides](/docs/how-to/import-saas-data)
+      - [CLI Reference](/docs/reference/cli-options)
+      - [YAML Schema](/docs/reference/ontology-yaml-schema)
+      - [Explanation](/docs/explanation/why-context-graphs)
+    </Card>
+    <Card title="Community">
+      - [Neo4j Community Forum](https://community.neo4j.com/)
+      - [GitHub Issues](https://github.com/neo4j-labs/create-context-graph/issues)
+    </Card>
+    <Card title="More">
+      - [Neo4j Labs](https://neo4j.com/labs/)
+      - [neo4j-agent-memory](https://github.com/neo4j-labs/agent-memory)
+    </Card>
+    <Card title="Project">
+      - [License (Apache 2.0)](https://github.com/neo4j-labs/create-context-graph/blob/main/LICENSE)
+      - [Changelog](https://github.com/neo4j-labs/create-context-graph/releases)
+      - [Contributing](https://github.com/neo4j-labs/create-context-graph/blob/main/CONTRIBUTING.md)
+    </Card>
+  </Columns>
+</LandingSection>

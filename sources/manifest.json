@@ -280,8 +280,8 @@
       "navigationRoute": "index",
       "title": "AI agents with graph memory, scaffolded in seconds.",
       "navigation": true,
-      "sourceSha256": "c85b02b8335407f22ed62bb24d0099776cdad64f131b0eb8cf3a74bfe3c76629",
-      "generatedSha256": "c85b02b8335407f22ed62bb24d0099776cdad64f131b0eb8cf3a74bfe3c76629"
+      "sourceSha256": "dfea9aa693e52d49eb0dd019fb169af6b6ba013c264f47264dbaf04059ebee1d",
+      "generatedSha256": "dfea9aa693e52d49eb0dd019fb169af6b6ba013c264f47264dbaf04059ebee1d"
     }
   ],
   "adaptationInputs": [
