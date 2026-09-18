@@ -1,0 +1,111 @@
+.browser {
+  background: #1a1a2e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  width: 100%;
+  max-width: 900px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 10px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotRed { background: #FF5F57; }
+.dotYellow { background: #FFBD2E; }
+.dotGreen { background: #28C840; }
+
+.navButtons {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.navButton {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  padding: 0 4px;
+  cursor: default;
+  user-select: none;
+}
+
+.addressBar {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lockIcon {
+  color: var(--color-terminal-green, #4ADE80);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.url {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.body {
+  min-height: 300px;
+  overflow: hidden;
+}
+
+/* Light mode */
+[data-theme="light"] .browser {
+  background: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .toolbar {
+  background: #f5f5f5;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .addressBar {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .url {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .navButton {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 640px) {
+  .navButtons {
+    display: none;
+  }
+
+  .body {
+    min-height: 200px;
+  }
+}

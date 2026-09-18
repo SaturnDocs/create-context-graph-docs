@@ -1,0 +1,146 @@
+/**
+ * Create Context Graph — Custom theme
+ * Neo4j Labs branding + POLE+O entity palette
+ */
+
+/* Font imports */
+@import "@fontsource/syne/400.css";
+@import "@fontsource/syne/600.css";
+@import "@fontsource/syne/700.css";
+@import "@fontsource/syne/800.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+
+:root {
+  /* Docusaurus theme — Labs purple */
+  --ifm-color-primary: #6366F1;
+  --ifm-color-primary-dark: #4F46E5;
+  --ifm-color-primary-darker: #4338CA;
+  --ifm-color-primary-darkest: #3730A3;
+  --ifm-color-primary-light: #818CF8;
+  --ifm-color-primary-lighter: #A5B4FC;
+  --ifm-color-primary-lightest: #C7D2FE;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* POLE+O palette */
+  --color-person: #22c55e;
+  --color-organization: #3b82f6;
+  --color-location: #a855f7;
+  --color-event: #f97316;
+  --color-object: #eab308;
+
+  /* Labs brand tokens */
+  --color-primary-labs: #6366F1;
+  --color-primary-labs-dark: #4F46E5;
+  --color-secondary-neo4j: #009999;
+  --color-terminal-bg: #1e1e2e;
+  --color-terminal-green: #4ADE80;
+  --color-terminal-purple: #A78BFA;
+  --color-terminal-gray: #9CA3AF;
+  --color-mem-short: #B2F2BB;
+  --color-mem-long: #FFEC99;
+  --color-mem-reasoning: #D0BFFF;
+
+  /* Accessible text colors for memory headings (light mode) */
+  --color-mem-short-text: #1a7a2e;
+  --color-mem-long-text: #8a6d00;
+  --color-mem-reasoning-text: #6b21a8;
+}
+
+[data-theme="dark"] {
+  --ifm-color-primary: #818CF8;
+  --ifm-color-primary-dark: #6366F1;
+  --ifm-color-primary-darker: #4F46E5;
+  --ifm-color-primary-darkest: #4338CA;
+  --ifm-color-primary-light: #A5B4FC;
+  --ifm-color-primary-lighter: #C7D2FE;
+  --ifm-color-primary-lightest: #E0E7FF;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Pastel text colors for memory headings (dark mode — good contrast on dark bg) */
+  --color-mem-short-text: #B2F2BB;
+  --color-mem-long-text: #FFEC99;
+  --color-mem-reasoning-text: #D0BFFF;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar — transparent glassmorphism over dark hero */
+.navbar--fixed-top {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Dark mode navbar: transparent bg so hero gradient shows through */
+[data-theme="dark"] .navbar {
+  background: rgba(10, 10, 26, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .navbar__title {
+  color: white;
+}
+
+[data-theme="dark"] .navbar__link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .navbar__link:hover {
+  color: white;
+}
+
+/* Mobile sidebar (hamburger menu) */
+[data-theme="dark"] .navbar-sidebar {
+  background: #0d1117;
+}
+
+[data-theme="dark"] .navbar-sidebar__brand {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .navbar-sidebar .menu__link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .navbar-sidebar .menu__link:hover,
+[data-theme="dark"] .navbar-sidebar .menu__link--active {
+  color: white;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+/* Reduced motion: disable smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Light mode navbar adjustments */
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode announcement bar */
+[data-theme="dark"] div[class*="announcementBar"] {
+  background: #1a1a2e;
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] div[class*="announcementBar"] button {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] div[class*="announcementBar"] button:hover {
+  color: rgba(255, 255, 255, 0.9);
+}

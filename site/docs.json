@@ -1,0 +1,117 @@
+{
+  "name": "Create Context Graph",
+  "description": "AI agents with graph memory, scaffolded in seconds",
+  "type": "docs",
+  "theme": "default",
+  "appearance": {
+    "default": "system"
+  },
+  "siteUrl": "https://create-context-graph.saturndocs.net",
+  "colors": {
+    "primary": "#6366f1"
+  },
+  "logo": "/img/logo.svg",
+  "favicon": "/img/favicon.ico",
+  "social": [
+    {
+      "icon": "github",
+      "label": "GitHub",
+      "href": "https://github.com/neo4j-labs/create-context-graph"
+    }
+  ],
+  "header": {
+    "website": "https://create-context-graph.dev/"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          "docs/intro",
+          "docs/quick-start",
+          "docs/whats-new"
+        ]
+      },
+      {
+        "group": "Tutorials",
+        "pages": [
+          "docs/tutorials/first-context-graph-app",
+          "docs/tutorials/customizing-domain-ontology",
+          "docs/tutorials/linear-context-graph",
+          "docs/tutorials/google-workspace-decisions",
+          "docs/tutorials/claude-code-sessions",
+          "docs/tutorials/import-chat-history"
+        ]
+      },
+      {
+        "group": "How-To Guides",
+        "pages": [
+          "docs/how-to/use-nams",
+          "docs/how-to/configure-memory-providers",
+          "docs/how-to/import-saas-data",
+          "docs/how-to/import-local-files",
+          "docs/how-to/add-custom-domain",
+          "docs/how-to/switch-frameworks",
+          "docs/how-to/use-neo4j-aura",
+          "docs/how-to/use-neo4j-local",
+          "docs/how-to/use-docker",
+          "docs/how-to/connect-claude-desktop"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "docs/reference/cli-options",
+          "docs/reference/ontology-yaml-schema",
+          "docs/reference/generated-project-structure",
+          "docs/reference/framework-comparison",
+          "docs/reference/domain-catalog",
+          "docs/reference/google-workspace-schema",
+          "docs/reference/claude-code-schema",
+          "docs/reference/chat-import-schema"
+        ]
+      },
+      {
+        "group": "Explanation",
+        "pages": [
+          "docs/explanation/memory-backends",
+          "docs/explanation/ccg-edges",
+          "docs/explanation/how-domain-ontologies-work",
+          "docs/explanation/three-memory-types",
+          "docs/explanation/why-context-graphs",
+          "docs/explanation/how-decision-traces-work"
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "text": "Copyright 2026 Neo4j Labs. Open source under Apache 2.0."
+  },
+  "ai": {
+    "assistant": true,
+    "graphEnrichment": false,
+    "home": false
+  },
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/docs/intro",
+      "permanent": true
+    },
+    {
+      "source": "/docs/how-to/add-data-source",
+      "destination": "/docs/how-to/import-saas-data",
+      "permanent": true
+    },
+    {
+      "source": "/docs/how-to/customize-domain",
+      "destination": "/docs/how-to/add-custom-domain",
+      "permanent": true
+    },
+    {
+      "source": "/docs/how-to/query-context-graph",
+      "destination": "/docs/intro",
+      "permanent": true
+    }
+  ]
+}

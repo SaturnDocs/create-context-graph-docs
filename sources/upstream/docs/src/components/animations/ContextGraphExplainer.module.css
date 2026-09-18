@@ -1,0 +1,197 @@
+.scrollContainer {
+  position: relative;
+  min-height: 250vh;
+  background: linear-gradient(180deg, #0a0a1a 0%, #0d1117 10%, #0d1117 90%, var(--ifm-background-color) 100%);
+}
+
+[data-theme="light"] .scrollContainer {
+  background: linear-gradient(180deg, #eef1f6 0%, #f0f2f7 10%, #f0f2f7 90%, var(--ifm-background-color) 100%);
+}
+
+.sectionHeader {
+  text-align: center;
+  padding: 3rem 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+[data-theme="light"] .sectionTitle {
+  color: #1a1a2e;
+}
+
+.sectionSubtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+[data-theme="light"] .sectionSubtitle {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1100px;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.graphArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.graphSvg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.textArea {
+  flex: 0 0 340px;
+  position: relative;
+  min-height: 200px;
+}
+
+.memoryLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.memoryTitle {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.memoryTitleShort { color: var(--color-mem-short-text); }
+.memoryTitleLong { color: var(--color-mem-long-text); }
+.memoryTitleReasoning { color: var(--color-mem-reasoning-text); }
+.memoryTitleFull { color: var(--color-primary-labs); }
+
+.memoryDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.memoryBadge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #0a0a1a;
+}
+
+/* Reduced motion fallback */
+.staticFallback {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.staticCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.staticCard {
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.staticCardTitle {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.staticCardDesc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Light mode text */
+[data-theme="light"] .memoryDescription {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .staticCardDesc {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .staticCard {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+@media (max-width: 768px) {
+  .scrollContainer {
+    min-height: 200vh;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .sectionHeader {
+    padding: 2rem 1.25rem 0;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 24px;
+    padding: 2rem 1.25rem;
+  }
+
+  .textArea {
+    flex: none;
+    width: 100%;
+    min-height: 120px;
+  }
+
+  .graphSvg {
+    max-width: 100%;
+  }
+
+  .staticCards {
+    grid-template-columns: 1fr;
+  }
+}

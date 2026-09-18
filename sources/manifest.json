@@ -1,0 +1,555 @@
+{
+  "upstreamRepository": "https://github.com/neo4j-labs/create-context-graph.git",
+  "upstreamCommit": "707b168d9509cbf1b919b82940285d1df4c6810d",
+  "pageCount": 33,
+  "assetCount": 40,
+  "publishedAssetCount": 18,
+  "pages": [
+    {
+      "source": "docs/docs/explanation/ccg-edges.md",
+      "output": "site/pages/docs/explanation/ccg-edges.mdx",
+      "route": "/docs/explanation/ccg-edges",
+      "title": "How NAMS stores relationships (ccg-edges)",
+      "sourceSha256": "6b8a5f693e38054af5f7c54b99a70e13f11ebd73cc6eea9c7a66735463c79eac",
+      "generatedSha256": "8fd9befd6a26527d03e9914a76a1c396230994b9fe5000528ff463a14e50d13a"
+    },
+    {
+      "source": "docs/docs/explanation/how-decision-traces-work.md",
+      "output": "site/pages/docs/explanation/how-decision-traces-work.mdx",
+      "route": "/docs/explanation/how-decision-traces-work",
+      "title": "How Decision Traces Work",
+      "sourceSha256": "b685e276e2e284dcd5a06acd543f31ce234f73d5da0ff9338c6c29da9181e142",
+      "generatedSha256": "1c45c523c51e24fcde6d1bb4dcb72896fcc6b3adca4d57288d3a6f71ff39e175"
+    },
+    {
+      "source": "docs/docs/explanation/how-domain-ontologies-work.md",
+      "output": "site/pages/docs/explanation/how-domain-ontologies-work.mdx",
+      "route": "/docs/explanation/how-domain-ontologies-work",
+      "title": "How Domain Ontologies Work",
+      "sourceSha256": "75b9c2552f834e25587f8704e71ebae9be2954fe3f1e3153d7b08756ee4778a9",
+      "generatedSha256": "4186b121579c9548195348e72a4f0197d834fbae00e080805473ae3abe37b4e2"
+    },
+    {
+      "source": "docs/docs/explanation/memory-backends.md",
+      "output": "site/pages/docs/explanation/memory-backends.mdx",
+      "route": "/docs/explanation/memory-backends",
+      "title": "Memory Backends — NAMS vs Self-Hosted",
+      "sourceSha256": "d03279b2cb2f26a0445e74440d46f48e29f73100313b4d8fb3cdee0c7ed7cfeb",
+      "generatedSha256": "d988c0b320eab9d33a7bcc4c1ca7259971399f3245d3569094ff0f2cf5f934bd"
+    },
+    {
+      "source": "docs/docs/explanation/three-memory-types.md",
+      "output": "site/pages/docs/explanation/three-memory-types.mdx",
+      "route": "/docs/explanation/three-memory-types",
+      "title": "Why Context Graphs Need All Three Memory Types",
+      "sourceSha256": "2847fdda49fdf3c7005ede464703f4df56e03813df5cab08b0a8817aef86d479",
+      "generatedSha256": "6190299935169b29bec2df678efadabbd5cbedda8f6d07a635b3756e99b0ea24"
+    },
+    {
+      "source": "docs/docs/explanation/why-context-graphs.md",
+      "output": "site/pages/docs/explanation/why-context-graphs.mdx",
+      "route": "/docs/explanation/why-context-graphs",
+      "title": "Why Context Graphs?",
+      "sourceSha256": "ad0691a63bf8edd61576ebf69e80a7e8b214dbab685722ca5baaa19e8c6ba7f8",
+      "generatedSha256": "cec1d3038122bd669d174363b0b45b8de9c7e37acee4590337828393dc46c05d"
+    },
+    {
+      "source": "docs/docs/how-to/add-custom-domain.md",
+      "output": "site/pages/docs/how-to/add-custom-domain.mdx",
+      "route": "/docs/how-to/add-custom-domain",
+      "title": "Add a Custom Domain",
+      "sourceSha256": "bc2fe64e41fb94832a94c3c6af0b59a059528c4848b0e9d4ec55f45ff5e532b3",
+      "generatedSha256": "547b3c8142c2adc794f86900e8670661000a7bbc8a6f2275b53d84d9eece22a8"
+    },
+    {
+      "source": "docs/docs/how-to/configure-memory-providers.md",
+      "output": "site/pages/docs/how-to/configure-memory-providers.mdx",
+      "route": "/docs/how-to/configure-memory-providers",
+      "title": "Configure Memory Providers (LiteLLM)",
+      "sourceSha256": "abf74e2116e30571f14a1c4a581d75da93be33652a4db975f7e9ac5448b4e060",
+      "generatedSha256": "4d26fd7fd01519881db024a612449bf8046d6446b470c4b3e3b65f539b0f00a7"
+    },
+    {
+      "source": "docs/docs/how-to/connect-claude-desktop.md",
+      "output": "site/pages/docs/how-to/connect-claude-desktop.mdx",
+      "route": "/docs/how-to/connect-claude-desktop",
+      "title": "Connect Claude Desktop",
+      "sourceSha256": "77d5ca675bf8b41b47eaf07bc13bbbff8b5f6c98b9e97873bd3ddf512f604eb4",
+      "generatedSha256": "d05bc921761464ff94e9086dc25aadd86d0e139de47f4b03fe8e428200f9cec7"
+    },
+    {
+      "source": "docs/docs/how-to/import-local-files.md",
+      "output": "site/pages/docs/how-to/import-local-files.mdx",
+      "route": "/docs/how-to/import-local-files",
+      "title": "Import Local Documents",
+      "sourceSha256": "d7f9f1fd32b47f2f93b4bf830fd08e2f1b5c311660d2c8565fcca9e6ff2410fe",
+      "generatedSha256": "c6db82d5dfb209be119424f1e2fb954153278b14ff76920c6c2eb9cfd28c1cc2"
+    },
+    {
+      "source": "docs/docs/how-to/import-saas-data.md",
+      "output": "site/pages/docs/how-to/import-saas-data.mdx",
+      "route": "/docs/how-to/import-saas-data",
+      "title": "Import Data from SaaS Services",
+      "sourceSha256": "0876a9ce15c870221917880c0ccd46f16f6ec832aa075e401860876e01450745",
+      "generatedSha256": "7f26d1b01e279614e88f617d09012b204180b73c6d75cc7a420297831f95e5b9"
+    },
+    {
+      "source": "docs/docs/how-to/switch-agent-frameworks.md",
+      "output": "site/pages/docs/how-to/switch-frameworks.mdx",
+      "route": "/docs/how-to/switch-frameworks",
+      "title": "Switch Agent Frameworks",
+      "sourceSha256": "4398f4ea2f935cb60350ea61eba16495c6c3f23f8414838724501f48b09db0a4",
+      "generatedSha256": "2263762952bc2fb4fd49f973a094c6c7317f9c0ad333bdf15fc184da814540e2"
+    },
+    {
+      "source": "docs/docs/how-to/use-docker.md",
+      "output": "site/pages/docs/how-to/use-docker.mdx",
+      "route": "/docs/how-to/use-docker",
+      "title": "Use Docker for Neo4j",
+      "sourceSha256": "74c4d8e4de3f6346eb25ffa84f01658285a83c41fcf5c782437c34295baa6782",
+      "generatedSha256": "1bc969c2c7196330c5357a1e4c648267922d2ace8e8462053cee0c93f9ec71d6"
+    },
+    {
+      "source": "docs/docs/how-to/use-nams.md",
+      "output": "site/pages/docs/how-to/use-nams.mdx",
+      "route": "/docs/how-to/use-nams",
+      "title": "Use the Neo4j Agent Memory Service (NAMS)",
+      "sourceSha256": "38d573da74e50f4670f73def90ccc9c2ef42993177978dd74ac71f50c989be06",
+      "generatedSha256": "9560122cf3aeb77f4e85ebe919a3b6bfb62e6291fe645afff2d483c47cb784e1"
+    },
+    {
+      "source": "docs/docs/how-to/use-neo4j-aura.md",
+      "output": "site/pages/docs/how-to/use-neo4j-aura.mdx",
+      "route": "/docs/how-to/use-neo4j-aura",
+      "title": "Use Neo4j Aura",
+      "sourceSha256": "c178df3771689423ca9efb7ed8f4479158517628278b31bea4ab74161c57192e",
+      "generatedSha256": "f1999408aad6ffba7cdc13f6b32ba8f9cf0db1440681acc28fed62ac65f63305"
+    },
+    {
+      "source": "docs/docs/how-to/use-neo4j-local.md",
+      "output": "site/pages/docs/how-to/use-neo4j-local.mdx",
+      "route": "/docs/how-to/use-neo4j-local",
+      "title": "Use Neo4j Local",
+      "sourceSha256": "ddfac2a06c2e348da9470749ece27eb5268e0c0726e8b4fe6acf372736ab3542",
+      "generatedSha256": "247b613bc469e777ea030ccb3f0085d9f8db05facfb483cfef52d207849f9ff3"
+    },
+    {
+      "source": "docs/docs/intro.md",
+      "output": "site/pages/docs/intro.mdx",
+      "route": "/docs/intro",
+      "title": "Introduction",
+      "sourceSha256": "fff5b1d6f157e175ac3a7aff7271f7edfbeeb17df3f436a6b3f09dd07c152c66",
+      "generatedSha256": "68bced5b136ace98fa152a26adf8563eb99a7709752fbd7f446443bbd77962a4"
+    },
+    {
+      "source": "docs/docs/quick-start.md",
+      "output": "site/pages/docs/quick-start.mdx",
+      "route": "/docs/quick-start",
+      "title": "Quick Start",
+      "sourceSha256": "8115bd378ce0ecf2017781a33796eec3a5364217b9f931fb1a717593e7a6e84c",
+      "generatedSha256": "c92dba58ba6c01bd58c3434dfed56adf7124ed172de2fbeee9b14338abddf545"
+    },
+    {
+      "source": "docs/docs/reference/chat-import-schema.md",
+      "output": "site/pages/docs/reference/chat-import-schema.mdx",
+      "route": "/docs/reference/chat-import-schema",
+      "title": "Chat Import Schema",
+      "sourceSha256": "18aebcc3c5ce199901dc11d0e0c2709eb1dc6e5a7e1c89d6c5b42f760ee8e1ef",
+      "generatedSha256": "4462dcb5c584ba6157a86ca179377077d1c13dfa208e93a833d562cad51828e0"
+    },
+    {
+      "source": "docs/docs/reference/claude-code-schema.md",
+      "output": "site/pages/docs/reference/claude-code-schema.mdx",
+      "route": "/docs/reference/claude-code-schema",
+      "title": "Claude Code Session Schema",
+      "sourceSha256": "f821b81051bcd689169ad3cd3db3d14ce0ca8a4f2347c2e1a6953218d1037465",
+      "generatedSha256": "3c385724a25b8c5e4fc2c8f0cadb543700c29d433907ff72848cfa096226f963"
+    },
+    {
+      "source": "docs/docs/reference/cli-options.md",
+      "output": "site/pages/docs/reference/cli-options.mdx",
+      "route": "/docs/reference/cli-options",
+      "title": "CLI Options & Flags",
+      "sourceSha256": "d4b0abc418d7cd0c20eb6639110372968f1e2669570a7e5a91e36b83639c0b2e",
+      "generatedSha256": "a9977d594f95476b8798dffcdfdb2f4586386b988214a9d384ac6e1f49f65604"
+    },
+    {
+      "source": "docs/docs/reference/domain-catalog.md",
+      "output": "site/pages/docs/reference/domain-catalog.mdx",
+      "route": "/docs/reference/domain-catalog",
+      "title": "Domain Catalog",
+      "sourceSha256": "70b5457abd33cc354b32e89b8088fcbffca0406efd41a562c44b54d6f5fad71e",
+      "generatedSha256": "5ec703b9090122b6ecc0fc49080d2a96ddde9201dde650a2bcf9ba2e5b5c8fec"
+    },
+    {
+      "source": "docs/docs/reference/framework-comparison.md",
+      "output": "site/pages/docs/reference/framework-comparison.mdx",
+      "route": "/docs/reference/framework-comparison",
+      "title": "Framework Comparison",
+      "sourceSha256": "a54749e84a307a1ea770dc3a3d9c58bccfde4f465ac4bc77c6e9aff6c80bd95c",
+      "generatedSha256": "9f9560ca7cb1bb4746a3f951809596c18fa72d78d417be0b629e54ea4f060398"
+    },
+    {
+      "source": "docs/docs/reference/generated-project-structure.md",
+      "output": "site/pages/docs/reference/generated-project-structure.mdx",
+      "route": "/docs/reference/generated-project-structure",
+      "title": "Generated Project Structure",
+      "sourceSha256": "8d118c7925407a9541f4c82b467a82b75f88fad5b451ff5a080a5562bb115953",
+      "generatedSha256": "cb156c5f55c3358cd0a2e856881c028c5a21e9dfcc2bb80aebc6eeeb7d6dc167"
+    },
+    {
+      "source": "docs/docs/reference/google-workspace-schema.md",
+      "output": "site/pages/docs/reference/google-workspace-schema.mdx",
+      "route": "/docs/reference/google-workspace-schema",
+      "title": "Google Workspace Graph Schema",
+      "sourceSha256": "c89f9615e21454b9e10dcc615adb01c45503e725a949613395c46fef2cc74cdb",
+      "generatedSha256": "3348d43762fd4a1bf232f9b48c9f39defb6e38ca67da43c7a7029eebf3cd8d14"
+    },
+    {
+      "source": "docs/docs/reference/ontology-yaml-schema.md",
+      "output": "site/pages/docs/reference/ontology-yaml-schema.mdx",
+      "route": "/docs/reference/ontology-yaml-schema",
+      "title": "Ontology YAML Schema",
+      "sourceSha256": "ceb37c63a36be9a5ca69832d52a793c8bf72f9fd96c3dc40d64edca9efa29ccf",
+      "generatedSha256": "0bfc5bccc32947895e50b2b358b082733ae3c030ea588db74b71d678d57d764d"
+    },
+    {
+      "source": "docs/docs/tutorials/claude-code-sessions.md",
+      "output": "site/pages/docs/tutorials/claude-code-sessions.mdx",
+      "route": "/docs/tutorials/claude-code-sessions",
+      "title": "Build a Developer Knowledge Graph from Claude Code Sessions",
+      "sourceSha256": "414d573ecf0d4b9a7d38a0077c763dbce56857652873d272c5265c40fa39d26d",
+      "generatedSha256": "ee68c8e7656d2fa9ab15616a436432d3b2806a6b8b03817548e9727ebc926a7f"
+    },
+    {
+      "source": "docs/docs/tutorials/customizing-domain-ontology.md",
+      "output": "site/pages/docs/tutorials/customizing-domain-ontology.mdx",
+      "route": "/docs/tutorials/customizing-domain-ontology",
+      "title": "Customizing Your Domain Ontology",
+      "sourceSha256": "ed48603c8d4ef881da173d79a7350be1452e2383861f08302665323082eb59cb",
+      "generatedSha256": "34de5b72c479df6cd87520356a69dace1b1132023680d697caa07aa95033246a"
+    },
+    {
+      "source": "docs/docs/tutorials/first-context-graph-app.md",
+      "output": "site/pages/docs/tutorials/first-context-graph-app.mdx",
+      "route": "/docs/tutorials/first-context-graph-app",
+      "title": "Your First Context Graph App",
+      "sourceSha256": "a72e695f6cb6b5dfe3a15085020a99f20d662ac7eb871d228341925398c4496c",
+      "generatedSha256": "6f2944ca043918202d10c6c220be8d4613e2d2de605ae8933e20355dab429b1d"
+    },
+    {
+      "source": "docs/docs/tutorials/google-workspace-decisions.md",
+      "output": "site/pages/docs/tutorials/google-workspace-decisions.mdx",
+      "route": "/docs/tutorials/google-workspace-decisions",
+      "title": "Decision Traces from Google Workspace",
+      "sourceSha256": "ce52902df77963ba097062bc446ac2d03b78e81e4e03d18f7e7686ee6e3303d8",
+      "generatedSha256": "3d23345edd658df8e05e75146d725dd6c0effff20519a668ffe7c5cfea07afc4"
+    },
+    {
+      "source": "docs/docs/tutorials/import-chat-history.md",
+      "output": "site/pages/docs/tutorials/import-chat-history.mdx",
+      "route": "/docs/tutorials/import-chat-history",
+      "title": "Import Your AI Chat History into a Context Graph",
+      "sourceSha256": "e9203304caefda44eb4e032ebe7b470d25e5d9ca6ed78fde4135c35e9bbbd610",
+      "generatedSha256": "4e22f08a01e7a8513715d049682f906dd4470bd4384614e0f8f0ce9e077f47c0"
+    },
+    {
+      "source": "docs/docs/tutorials/linear-context-graph.md",
+      "output": "site/pages/docs/tutorials/linear-context-graph.mdx",
+      "route": "/docs/tutorials/linear-context-graph",
+      "title": "Building Your First Linear Context Graph",
+      "sourceSha256": "5ba85d94805497d6fdb0798295be4d800a9fe9861a097f0a5eafc3388596ce9e",
+      "generatedSha256": "64c8e4b50be639de1ea6423b15dbd054b8061e0e444dde607de847c0d8b57d9a"
+    },
+    {
+      "source": "docs/docs/whats-new.md",
+      "output": "site/pages/docs/whats-new.mdx",
+      "route": "/docs/whats-new",
+      "title": "What's New",
+      "sourceSha256": "1a483c077aff36ba9bb48c2dcf5942f65c59a2e5446a32b207af424951b7bccb",
+      "generatedSha256": "84de029d4be2d25d348963f976fd55a5b0a16a01c4550e286592a66d2d3ca2d6"
+    }
+  ],
+  "assets": [
+    {
+      "source": "docs/static/img/app-three-panel.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "40d8cbd2386a32b4b03eb1046b44250055fa65081c13f00bdf2be0529bf9cf33",
+      "size": 45304
+    },
+    {
+      "source": "docs/static/img/app-three-panel.png",
+      "output": "site/public/img/app-three-panel.png",
+      "published": true,
+      "sha256": "8862398e6296d2328467f0794ce015c4152b5c1e46e20e23f10b39df698f0c37",
+      "size": 675158
+    },
+    {
+      "source": "docs/static/img/architecture-overview.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "b8c22bb86aa7266d3430da39f9dd87837cdd575ee43dd2c109d690b85d8b1372",
+      "size": 25213
+    },
+    {
+      "source": "docs/static/img/architecture-overview.png",
+      "output": "site/public/img/architecture-overview.png",
+      "published": true,
+      "sha256": "9237a72a69fd3ca46e748db44dad390771db40cba9b04f6edee6b6a51f304533",
+      "size": 684781
+    },
+    {
+      "source": "docs/static/img/claude-code-data-flow.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "536e94c15dc331645a4312d9e305b58008ffdc209fd1fd01004cb1664f87f45d",
+      "size": 11079
+    },
+    {
+      "source": "docs/static/img/claude-code-data-flow.png",
+      "output": "site/public/img/claude-code-data-flow.png",
+      "published": true,
+      "sha256": "3b500587d60dc48da8885e4b69c1248188e759c56edeb3800608c3165b568ee6",
+      "size": 190593
+    },
+    {
+      "source": "docs/static/img/claude-code-data-pipeline.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "373c3a768cff9fee5bbcd0e11427af64745eccf4357fb83cfb7e2e9842f7377d",
+      "size": 12819
+    },
+    {
+      "source": "docs/static/img/claude-code-data-pipeline.png",
+      "output": "site/public/img/claude-code-data-pipeline.png",
+      "published": true,
+      "sha256": "9955250b40626065d1a284d7c506bde6e4c8e9d5fefe86aebcc21b812ffefe62",
+      "size": 252645
+    },
+    {
+      "source": "docs/static/img/claude-code-decision-extraction.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "f3a52815660c69b253fa68212caba4c598205bb9dc31db9e2c8de111b0212665",
+      "size": 33609
+    },
+    {
+      "source": "docs/static/img/claude-code-decision-extraction.png",
+      "output": "site/public/img/claude-code-decision-extraction.png",
+      "published": true,
+      "sha256": "cc5d12b398fd702d82ad29c4e6a60764ab6f890ec54fad3094deeaebf8e7d109",
+      "size": 498834
+    },
+    {
+      "source": "docs/static/img/claude-code-graph-schema.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "642b440da7b6bbc445844421f2bf5bf1bf06df963ed270bad789777233f9e515",
+      "size": 38384
+    },
+    {
+      "source": "docs/static/img/claude-code-graph-schema.png",
+      "output": "site/public/img/claude-code-graph-schema.png",
+      "published": true,
+      "sha256": "7fddfb6d5d6863025f8fd2818b6316f491ce87597142a3ea945d68024c10ef69",
+      "size": 429087
+    },
+    {
+      "source": "docs/static/img/connector-data-flow.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "e88741c6161699c167aca1a7ce70621d67c91bc77bd92c843d930ddb81000ac7",
+      "size": 26855
+    },
+    {
+      "source": "docs/static/img/connector-data-flow.png",
+      "output": "site/public/img/connector-data-flow.png",
+      "published": true,
+      "sha256": "6569da8b83506b2ba3e2a7ca80ef774bdb0e5403f3b7dd7ac3e7781bbb06ae4a",
+      "size": 311344
+    },
+    {
+      "source": "docs/static/img/decision-trace-structure.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "82ad732785224fd0d7bf435a7052cbb0c73030df413aebc20b115b748f4d689a",
+      "size": 20887
+    },
+    {
+      "source": "docs/static/img/decision-trace-structure.png",
+      "output": "site/public/img/decision-trace-structure.png",
+      "published": true,
+      "sha256": "7a2b42e265c7c164eabf5a9956d074d7b88b54b6145f66e1d91dbcf7df6f1c81",
+      "size": 310526
+    },
+    {
+      "source": "docs/static/img/docusaurus-social-card.jpg",
+      "output": null,
+      "published": false,
+      "sha256": "7e3f3833e6742ffcc323c56380b3d1faf185c175534ea5591686bf879a1f7cfb",
+      "size": 55746
+    },
+    {
+      "source": "docs/static/img/docusaurus.png",
+      "output": null,
+      "published": false,
+      "sha256": "9204212d3905bc1b8d1d882825d1eceb5ad942329222277d7257831a7d47d827",
+      "size": 5142
+    },
+    {
+      "source": "docs/static/img/favicon.ico",
+      "output": "site/public/img/favicon.ico",
+      "published": true,
+      "sha256": "7fe55819f14792d942d86092f519b6d425e995337b482a8743e363cf5ac0ae30",
+      "size": 3626
+    },
+    {
+      "source": "docs/static/img/graph-vs-flat.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "aac33665a6b34325d74f29299c9eb9e00f99ddc74147a2e30021fb763a5d3e45",
+      "size": 31284
+    },
+    {
+      "source": "docs/static/img/graph-vs-flat.png",
+      "output": "site/public/img/graph-vs-flat.png",
+      "published": true,
+      "sha256": "d02c4e7d36c21f4e13590e1d41832537e377632bbd06e99611457d05889c121b",
+      "size": 432250
+    },
+    {
+      "source": "docs/static/img/gws-decision-flow.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "7e85606157f8e9ee1eec011e8e15f8dc04bc48791d5eeb431ef4be0d704eaed7",
+      "size": 10639
+    },
+    {
+      "source": "docs/static/img/gws-decision-flow.png",
+      "output": "site/public/img/gws-decision-flow.png",
+      "published": true,
+      "sha256": "b81970cf084d956cbd1258161e461f235f495b76c98176f6137ff2e72f53ebb1",
+      "size": 228253
+    },
+    {
+      "source": "docs/static/img/gws-graph-schema.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "0aeabe134f947015cf9db1f65c590999b5c8bc4d65e47476318b9b236005914e",
+      "size": 42232
+    },
+    {
+      "source": "docs/static/img/gws-graph-schema.png",
+      "output": "site/public/img/gws-graph-schema.png",
+      "published": true,
+      "sha256": "1960e0952421375b41031641afaf7c49e3da0ecf36f8c48d7bc49a87b621789d",
+      "size": 761750
+    },
+    {
+      "source": "docs/static/img/gws-linear-combined.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "c86034d8ee48815a6ac9a9d4ee4356a3d8e9cc72d723dcc4f1aca72f15a5f738",
+      "size": 12410
+    },
+    {
+      "source": "docs/static/img/gws-linear-combined.png",
+      "output": "site/public/img/gws-linear-combined.png",
+      "published": true,
+      "sha256": "5414c254c8b6d3fc4ceebd879879573043b666fa0da9615edf5534c89e7b72d8",
+      "size": 285537
+    },
+    {
+      "source": "docs/static/img/linear-data-flow.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "038fbfb47b28177b71bb90f32af1ad110d39e231405df1a1bd64245d5864bb32",
+      "size": 11180
+    },
+    {
+      "source": "docs/static/img/linear-data-flow.png",
+      "output": "site/public/img/linear-data-flow.png",
+      "published": true,
+      "sha256": "c94f20f37e80765abe4cf9520435312eea639b027f6385539e37e362ce0a2385",
+      "size": 197618
+    },
+    {
+      "source": "docs/static/img/linear-graph-schema.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "2823be0a028fb470a750cdb7c820be95cd6770955a8c3a8e7ec2305547d385da",
+      "size": 52295
+    },
+    {
+      "source": "docs/static/img/linear-graph-schema.png",
+      "output": "site/public/img/linear-graph-schema.png",
+      "published": true,
+      "sha256": "1f49fa4b267ba933ebe83b7020564c2322cc8c728618d39b492efe14d69306dd",
+      "size": 639973
+    },
+    {
+      "source": "docs/static/img/logo.svg",
+      "output": "site/public/img/logo.svg",
+      "published": true,
+      "sha256": "c2ae4b0e5603791e869ed5bc34a60a709d1ec6343fc22f75d97937aaafafd7f7",
+      "size": 6438
+    },
+    {
+      "source": "docs/static/img/memory-architecture.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "458414e5596b7ea0d92b3697580731a20306285b5ae02772beee961c2eff2c5f",
+      "size": 17502
+    },
+    {
+      "source": "docs/static/img/memory-architecture.png",
+      "output": "site/public/img/memory-architecture.png",
+      "published": true,
+      "sha256": "ecb5d2d13de8589c58c6b88015532cca48b84314f6dd4886cfa73b38b92d067a",
+      "size": 339277
+    },
+    {
+      "source": "docs/static/img/ontology-pipeline.excalidraw",
+      "output": null,
+      "published": false,
+      "sha256": "b6528e9a104aabb76eb4d62cc99f031a8d35be519d572efcd785354394fdfb3b",
+      "size": 26152
+    },
+    {
+      "source": "docs/static/img/ontology-pipeline.png",
+      "output": "site/public/img/ontology-pipeline.png",
+      "published": true,
+      "sha256": "1a251580ed02ab8c81109731fbc0cb3fa933f5c05b1d8a5ed66195b9a9f61642",
+      "size": 401965
+    },
+    {
+      "source": "docs/static/img/screenshot-frontend.png",
+      "output": null,
+      "published": false,
+      "sha256": "43739c566e26fd7cb88f69d3864ea34740372f5ee99acac169e090beffbce5c6",
+      "size": 68
+    },
+    {
+      "source": "docs/static/img/undraw_docusaurus_mountain.svg",
+      "output": null,
+      "published": false,
+      "sha256": "5d63a81ff3dd5ea266e99156f8e33f76cc02df0f04e1a4487240663704660b7f",
+      "size": 31486
+    },
+    {
+      "source": "docs/static/img/undraw_docusaurus_react.svg",
+      "output": null,
+      "published": false,
+      "sha256": "1f2c1d7bcdd4219c9869d94b45c052e2856464e91c3e0704d99b4714d32cc668",
+      "size": 36002
+    },
+    {
+      "source": "docs/static/img/undraw_docusaurus_tree.svg",
+      "output": null,
+      "published": false,
+      "sha256": "09704d88ef849647bf2ee02a4cb1b1b413f000de059a8d794019238ef2c5e4a7",
+      "size": 11887
+    }
+  ]
+}
