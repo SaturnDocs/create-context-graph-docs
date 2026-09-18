@@ -54,7 +54,10 @@ for (const [label, source] of [
     failures.push(`${label} does not declare the SaturnDocs landing-page layout`);
   }
   for (const asset of ["/img/app-three-panel.png", "/img/memory-architecture.png"]) {
-    if (!source.includes(asset)) failures.push(`${label} does not use original-site asset ${asset}`);
+    if (source.includes(asset)) failures.push(`${label} incorrectly reuses documentation asset ${asset} on the landing page`);
+  }
+  for (const component of ["AppPreview", "MemorySequence", "DomainCarousel", "FrameworkGrid", "LandingFooter"]) {
+    if (!source.includes(`<${component}`)) failures.push(`${label} is missing ${component}`);
   }
 }
 
@@ -85,7 +88,10 @@ if (generatedPages.length !== manifest.pageCount) {
   failures.push(`found ${generatedPages.length} generated pages; manifest records ${manifest.pageCount}`);
 }
 
-const navigationPages = flattenNavigation(docsConfig.navigation.groups);
+const navigationGroups = "groups" in docsConfig.navigation
+  ? docsConfig.navigation.groups
+  : docsConfig.navigation.tabs.flatMap((tab) => tab.groups);
+const navigationPages = flattenNavigation(navigationGroups);
 const manifestRoutes = [
   ...manifest.pages.map((page) => page.route.slice(1)),
   ...manifest.adaptedPages.filter((page) => page.navigation).map((page) => page.navigationRoute ?? page.route.slice(1)),

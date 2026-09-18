@@ -25,6 +25,7 @@ for (const page of allPages) {
 }
 
 const landingHtml = await readFile(path.join(build, "index.html"), "utf8");
+const landingTwin = await readFile(path.join(build, "index.md"), "utf8");
 if (!landingHtml.includes('data-gs-layout="landing"')) {
   failures.push("/: rendered homepage does not use the landing-page frame");
 }
@@ -38,8 +39,15 @@ if (landingHtml.includes('data-gs-toc')) {
   failures.push("/: rendered homepage includes the documentation table of contents");
 }
 for (const asset of ["/img/app-three-panel.png", "/img/memory-architecture.png"]) {
-  if (!landingHtml.includes(`src="${asset}"`)) {
-    failures.push(`/: rendered homepage does not use original-site asset ${asset}`);
+  if (landingHtml.includes(`src="${asset}"`)) failures.push(`/: rendered homepage incorrectly uses documentation asset ${asset}`);
+}
+for (const componentClass of ["gs-app-preview", "gs-memory-sequence", "gs-domain-carousel", "gs-framework-grid", "gs-landing-footer"]) {
+  if (!landingHtml.includes(componentClass)) failures.push(`/: rendered homepage is missing ${componentClass}`);
+}
+const normalizedLandingTwin = contentText(landingTwin);
+for (const assertion of manifest.homepageCopyAssertions) {
+  if (!normalizedLandingTwin.includes(contentText(assertion))) {
+    failures.push(`/: Markdown twin is missing upstream landing-page copy: ${assertion}`);
   }
 }
 
@@ -88,4 +96,11 @@ function escapeHtml(value) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
+}
+
+function contentText(value) {
+  return value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&rarr;", "→")
+    .replace(/\s+/g, " ");
 }
