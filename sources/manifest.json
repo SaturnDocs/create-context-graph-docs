@@ -1,7 +1,9 @@
 {
   "upstreamRepository": "https://github.com/neo4j-labs/create-context-graph.git",
   "upstreamCommit": "707b168d9509cbf1b919b82940285d1df4c6810d",
-  "pageCount": 33,
+  "pageCount": 34,
+  "documentationPageCount": 33,
+  "adaptedPageCount": 1,
   "assetCount": 40,
   "publishedAssetCount": 18,
   "pages": [
@@ -270,6 +272,117 @@
       "generatedSha256": "84de029d4be2d25d348963f976fd55a5b0a16a01c4550e286592a66d2d3ca2d6"
     }
   ],
+  "adaptedPages": [
+    {
+      "source": "sources/adapted/index.mdx",
+      "output": "site/pages/index.mdx",
+      "route": "/",
+      "navigationRoute": "index",
+      "title": "AI agents with graph memory, scaffolded in seconds.",
+      "navigation": true,
+      "sourceSha256": "c85b02b8335407f22ed62bb24d0099776cdad64f131b0eb8cf3a74bfe3c76629",
+      "generatedSha256": "c85b02b8335407f22ed62bb24d0099776cdad64f131b0eb8cf3a74bfe3c76629"
+    }
+  ],
+  "adaptationInputs": [
+    {
+      "source": "docs/docusaurus.config.ts",
+      "sha256": "fa39a6d9424155ba924a11aa0ee8801608d9164905df1cd1cf822e5d7a3afd01"
+    },
+    {
+      "source": "docs/src/data/animation-config.ts",
+      "sha256": "8ee7752b54f56403a93505469aecc585b5e5f9b039b7e787a3d1f86e985743cf"
+    },
+    {
+      "source": "docs/src/pages/index.tsx",
+      "sha256": "c897bdeaf1c86424b448a5408a8706cb43d26967124d7ec87f50158033806227"
+    },
+    {
+      "source": "docs/src/pages/404.tsx",
+      "sha256": "da5ab0d57c8299bb8847eaef6d2260a387c40dafe631e657fd6780e042a6f421"
+    },
+    {
+      "source": "docs/src/components/animations/AppPreview.tsx",
+      "sha256": "dd41f546b0a5f6ba4fc0e5ba40e10946998c2a1fca16681a08e76f59ef5e312e"
+    },
+    {
+      "source": "docs/src/components/animations/ContextGraphExplainer.tsx",
+      "sha256": "f32fbbcd1247120a323597ecda46ad6fa3994e81cb87c811cd38ff96f5c4291b"
+    },
+    {
+      "source": "docs/src/components/animations/DomainCarousel.tsx",
+      "sha256": "6f0e93a6f08a8e24e9552bc1196ff8bb67aa179b1e8087c26d5ec0be2768fa52"
+    },
+    {
+      "source": "docs/src/components/animations/FrameworkGrid.tsx",
+      "sha256": "3ce5ca8098b6edbd3bb8b9d5e09cf010c3687dbc3c6abc7c35fae76938d6b3ce"
+    },
+    {
+      "source": "docs/src/components/animations/HowItWorks.tsx",
+      "sha256": "08172a97f469e64af79f17ab3f540db745034373a8feda3efd43a4beee4fb733"
+    },
+    {
+      "source": "docs/src/components/animations/TerminalAnimation.tsx",
+      "sha256": "6d420f797f8fa6dbd2acb0eb18ab4761c8225381d98fd345a957d4651953e145"
+    },
+    {
+      "source": "docs/src/components/animations/TrustBar.tsx",
+      "sha256": "c50854c5f4dfa7219bca0fe58d5cb2bbda04a485e70bc22da834cdd71523000e"
+    }
+  ],
+  "homepageCopyAssertions": [
+    "create-context-graph v0.9.5",
+    "AI agents with graph memory, scaffolded in seconds.",
+    "Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing.",
+    "v0.6.0",
+    "Demo data (recommended)",
+    "Scaffolding backend...",
+    "Healthcare Context Graph is ready!",
+    "Show me patients with diabetes who were treated in the last 30 days",
+    "I found 12 patients with diabetes type 2 who received treatment in the last 30 days.",
+    "Identify patients with diabetes condition",
+    "Filter treatments within 30-day window",
+    "Aggregate by treatment type and provider",
+    "Three memory types. One connected graph.",
+    "Conversation history stored as graph nodes. Every message, every turn, connected and queryable.",
+    "Entity knowledge graph built from conversations. People, organizations, locations, and events — all connected.",
+    "Every tool call and decision traced and auditable. Know not just what the agent said, but why.",
+    "Three memory types, one connected graph. This is what makes agents remember, reason, and explain.",
+    "23 domains. Your industry, ready to go.",
+    "Each domain includes a complete ontology, demo data, agent tools, and graph schema",
+    "Drag to explore",
+    "Healthcare",
+    "Financial Services",
+    "Software Engineering",
+    "Retail & E-Commerce",
+    "Scientific Research",
+    "Agent Memory",
+    "GenAI & LLM Ops",
+    "Personal Knowledge",
+    "Product Management",
+    "Wildlife Management",
+    "Bring your favorite agent framework.",
+    "PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more",
+    "PydanticAI",
+    "Claude Agent SDK",
+    "OpenAI Agents SDK",
+    "Anthropic Tools",
+    "CrewAI",
+    "Strands",
+    "Google ADK",
+    "Full Streaming",
+    "Tool Events",
+    "From zero to running app in 4 commands.",
+    "Scaffold, install, seed, and start",
+    "uvx create-context-graph my-app --domain healthcare --framework pydanticai --demo-data",
+    "cd my-app && make install",
+    "make docker-up && make seed",
+    "make start",
+    "Passing Tests",
+    "Ready to build your context graph?",
+    "Neo4j Community Forum",
+    "License (Apache 2.0)"
+  ],
   "assets": [
     {
       "source": "docs/static/img/app-three-panel.excalidraw",
@@ -399,8 +512,8 @@
     },
     {
       "source": "docs/static/img/favicon.ico",
-      "output": "site/public/img/favicon.ico",
-      "published": true,
+      "output": null,
+      "published": false,
       "sha256": "7fe55819f14792d942d86092f519b6d425e995337b482a8743e363cf5ac0ae30",
       "size": 3626
     },
@@ -490,8 +603,8 @@
     },
     {
       "source": "docs/static/img/logo.svg",
-      "output": "site/public/img/logo.svg",
-      "published": true,
+      "output": null,
+      "published": false,
       "sha256": "c2ae4b0e5603791e869ed5bc34a60a709d1ec6343fc22f75d97937aaafafd7f7",
       "size": 6438
     },
@@ -550,6 +663,20 @@
       "published": false,
       "sha256": "09704d88ef849647bf2ee02a4cb1b1b413f000de059a8d794019238ef2c5e4a7",
       "size": 11887
+    }
+  ],
+  "brandAssets": [
+    {
+      "source": "brand/context-graph-favicon.svg",
+      "output": "site/public/img/context-graph-favicon.svg",
+      "sha256": "6fa604982ff1b578fbd81a5592b01c02f7e443c121c781fb303a743f71c169eb",
+      "size": 554
+    },
+    {
+      "source": "brand/context-graph-logo.svg",
+      "output": "site/public/img/context-graph-logo.svg",
+      "sha256": "569ee2ac73e46e8cc402a42c14081783a48340699cd695f5268b1908a8708803",
+      "size": 498
     }
   ]
 }

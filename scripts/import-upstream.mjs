@@ -7,6 +7,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourceRoot = path.join(root, "sources", "upstream", "docs");
 const sourcePages = path.join(sourceRoot, "docs");
 const sourceAssets = path.join(sourceRoot, "static", "img");
+const adaptedRoot = path.join(root, "sources", "adapted");
+const brandRoot = path.join(root, "brand");
 const sitePages = path.join(root, "site", "pages");
 const siteAssets = path.join(root, "site", "public", "img");
 
@@ -40,12 +42,117 @@ for (const relative of sourcePagePaths) {
   });
 }
 
+const adaptedPageDefinitions = [
+  { source: "index.mdx", output: "index.mdx", route: "/", navigationRoute: "index", title: "AI agents with graph memory, scaffolded in seconds.", navigation: true },
+];
+const adaptedPages = [];
+for (const definition of adaptedPageDefinitions) {
+  const source = await readFile(path.join(adaptedRoot, definition.source), "utf8");
+  await write(definition.output, source);
+  adaptedPages.push({
+    source: `sources/adapted/${definition.source}`,
+    output: `site/pages/${definition.output}`,
+    route: definition.route,
+    navigationRoute: definition.navigationRoute ?? null,
+    title: definition.title,
+    navigation: definition.navigation,
+    sourceSha256: sha256(source),
+    generatedSha256: sha256(source),
+  });
+}
+
+const adaptationInputPaths = [
+  "docusaurus.config.ts",
+  "src/data/animation-config.ts",
+  "src/pages/index.tsx",
+  "src/pages/404.tsx",
+  "src/components/animations/AppPreview.tsx",
+  "src/components/animations/ContextGraphExplainer.tsx",
+  "src/components/animations/DomainCarousel.tsx",
+  "src/components/animations/FrameworkGrid.tsx",
+  "src/components/animations/HowItWorks.tsx",
+  "src/components/animations/TerminalAnimation.tsx",
+  "src/components/animations/TrustBar.tsx",
+];
+const adaptationInputs = [];
+let adaptationSource = "";
+for (const relative of adaptationInputPaths) {
+  const source = await readFile(path.join(sourceRoot, relative), "utf8");
+  adaptationSource += `\n${source}`;
+  adaptationInputs.push({
+    source: `docs/${relative}`,
+    sha256: sha256(source),
+  });
+}
+
+const homepageCopyAssertions = [
+  "create-context-graph v0.9.5",
+  "AI agents with graph memory, scaffolded in seconds.",
+  "Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing.",
+  "v0.6.0",
+  "Demo data (recommended)",
+  "Scaffolding backend...",
+  "Healthcare Context Graph is ready!",
+  "Show me patients with diabetes who were treated in the last 30 days",
+  "I found 12 patients with diabetes type 2 who received treatment in the last 30 days.",
+  "Identify patients with diabetes condition",
+  "Filter treatments within 30-day window",
+  "Aggregate by treatment type and provider",
+  "Three memory types. One connected graph.",
+  "Conversation history stored as graph nodes. Every message, every turn, connected and queryable.",
+  "Entity knowledge graph built from conversations. People, organizations, locations, and events — all connected.",
+  "Every tool call and decision traced and auditable. Know not just what the agent said, but why.",
+  "Three memory types, one connected graph. This is what makes agents remember, reason, and explain.",
+  "23 domains. Your industry, ready to go.",
+  "Each domain includes a complete ontology, demo data, agent tools, and graph schema",
+  "Drag to explore",
+  "Healthcare",
+  "Financial Services",
+  "Software Engineering",
+  "Retail & E-Commerce",
+  "Scientific Research",
+  "Agent Memory",
+  "GenAI & LLM Ops",
+  "Personal Knowledge",
+  "Product Management",
+  "Wildlife Management",
+  "Bring your favorite agent framework.",
+  "PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more",
+  "PydanticAI",
+  "Claude Agent SDK",
+  "OpenAI Agents SDK",
+  "Anthropic Tools",
+  "CrewAI",
+  "Strands",
+  "Google ADK",
+  "Full Streaming",
+  "Tool Events",
+  "From zero to running app in 4 commands.",
+  "Scaffold, install, seed, and start",
+  "uvx create-context-graph my-app --domain healthcare --framework pydanticai --demo-data",
+  "cd my-app && make install",
+  "make docker-up && make seed",
+  "make start",
+  "Passing Tests",
+  "Ready to build your context graph?",
+  "Neo4j Community Forum",
+  "License (Apache 2.0)",
+];
+const homepage = contentText(await readFile(path.join(adaptedRoot, "index.mdx"), "utf8"));
+const normalizedAdaptationSource = contentText(adaptationSource);
+for (const assertion of homepageCopyAssertions) {
+  if (!normalizedAdaptationSource.includes(assertion)) {
+    throw new Error(`Landing-page copy is not present in the pinned upstream source: ${assertion}`);
+  }
+  if (!homepage.includes(assertion)) {
+    throw new Error(`Landing-page adaptation is missing upstream copy: ${assertion}`);
+  }
+}
+
 const sourceAssetPaths = (await walk(sourceAssets)).sort();
 const referencedAssets = referencedImagePaths(
   await Promise.all(sourcePagePaths.map((relative) => readFile(path.join(sourcePages, relative), "utf8"))),
 );
-referencedAssets.add("favicon.ico");
-referencedAssets.add("logo.svg");
 
 const assets = [];
 for (const relative of sourceAssetPaths) {
@@ -61,6 +168,18 @@ for (const relative of sourceAssetPaths) {
   });
 }
 
+const brandAssets = [];
+for (const relative of (await walk(brandRoot)).sort()) {
+  const bytes = await readFile(path.join(brandRoot, relative));
+  await writeBinary(relative, bytes);
+  brandAssets.push({
+    source: `brand/${relative}`,
+    output: `site/public/img/${relative}`,
+    sha256: sha256(bytes),
+    size: bytes.byteLength,
+  });
+}
+
 const missingAssets = [...referencedAssets].filter(
   (relative) => !sourceAssetPaths.includes(relative),
 );
@@ -71,11 +190,17 @@ if (missingAssets.length > 0) {
 const manifest = {
   upstreamRepository,
   upstreamCommit,
-  pageCount: pages.length,
+  pageCount: pages.length + adaptedPages.length,
+  documentationPageCount: pages.length,
+  adaptedPageCount: adaptedPages.length,
   assetCount: assets.length,
-  publishedAssetCount: assets.filter((asset) => asset.published).length,
+  publishedAssetCount: assets.filter((asset) => asset.published).length + brandAssets.length,
   pages,
+  adaptedPages,
+  adaptationInputs,
+  homepageCopyAssertions,
   assets,
+  brandAssets,
 };
 await writeFile(
   path.join(root, "sources", "manifest.json"),
@@ -84,7 +209,9 @@ await writeFile(
 );
 
 console.log(
-  `Imported ${pages.length} pages and ${manifest.publishedAssetCount} published assets ` +
+  `Imported ${pages.length} documentation pages, ${adaptedPages.length} site ` +
+    `page${adaptedPages.length === 1 ? "" : "s"}, and ` +
+    `${manifest.publishedAssetCount} published assets ` +
     `from ${upstreamCommit}.`,
 );
 
@@ -222,4 +349,11 @@ async function writeBinary(relative, contents) {
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
+}
+
+function contentText(value) {
+  return value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&rarr;", "→")
+    .replace(/\s+/g, " ");
 }

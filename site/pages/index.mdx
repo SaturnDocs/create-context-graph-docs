@@ -1,0 +1,443 @@
+---
+title: "AI agents with graph memory, scaffolded in seconds."
+---
+
+> 📦 You are viewing docs for **create-context-graph v0.9.5**
+
+Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing.
+
+[Get Started](/docs/intro) · [View on GitHub →](https://github.com/neo4j-labs/create-context-graph)
+
+```console
+$ uvx create-context-graph my-healthcare-app
+```
+
+<Accordion title="Create Context Graph v0.6.0">
+  ✓ Data source: Demo data (recommended)
+
+  ✓ Domain: healthcare
+
+  ✓ Framework: PydanticAI
+
+  Scaffolding backend...
+
+  Building frontend...
+
+  Writing configuration...
+
+  `backend/app/__init__.py` · `backend/app/main.py` · `backend/app/config.py` · `backend/app/routes.py` · `backend/app/models.py` · `backend/app/agent.py` · `backend/app/context_graph_client.py`
+
+  `frontend/app/layout.tsx` · `frontend/app/page.tsx` · `frontend/components/ChatInterface.tsx` · `frontend/components/ContextGraphView.tsx`
+
+  `cypher/schema.cypher` · `data/ontology.yaml` · `data/fixtures.json` · `Makefile` · `docker-compose.yml`
+
+  ✓ Healthcare Context Graph is ready!
+
+  Frontend: `http://localhost:3000`
+
+  Backend: `http://localhost:8000`
+
+  `$ cd my-healthcare-app && make start`
+</Accordion>
+
+## See what you'll build
+
+> Show me patients with diabetes who were treated in the last 30 days
+
+`query_knowledge_graph`
+
+I found 12 patients with diabetes type 2 who received treatment in the last 30 days. The most common treatments were Metformin (8 patients) and Insulin therapy (4 patients), primarily managed by Dr. Chen and Dr. Patel in the Endocrinology department.
+
+Patient · Condition · Treatment · Doctor · Department
+
+HAS_CONDITION · RECEIVED · TREATS · BELONGS_TO
+
+### Decision Trace
+
+#### Cypher Query
+
+```cypher
+MATCH (p:Patient)-[:HAS_CONDITION]->(c:Condition)
+WHERE c.name CONTAINS 'diabetes'
+MATCH (p)-[:RECEIVED]->(t:Treatment)
+WHERE t.date > date() - duration('P30D')
+RETURN p, c, t
+```
+
+#### Reasoning
+
+1. Identify patients with diabetes condition
+2. Filter treatments within 30-day window
+3. Aggregate by treatment type and provider
+
+## Three memory types. One connected graph.
+
+Scroll to explore each memory layer
+
+<CardGroup cols={2}>
+  <Card title="Short-Term Memory">
+    **Conversations**
+
+    Conversation history stored as graph nodes. Every message, every turn, connected and queryable.
+  </Card>
+  <Card title="Long-Term Memory">
+    **Knowledge Graph**
+
+    Entity knowledge graph built from conversations. People, organizations, locations, and events — all connected.
+  </Card>
+  <Card title="Reasoning Memory">
+    **Decision Traces**
+
+    Every tool call and decision traced and auditable. Know not just what the agent said, but why.
+  </Card>
+  <Card title="The Context Graph">
+    **Connected**
+
+    Three memory types, one connected graph. This is what makes agents remember, reason, and explain.
+  </Card>
+</CardGroup>
+
+## 23 domains. Your industry, ready to go.
+
+Each domain includes a complete ontology, demo data, agent tools, and graph schema
+
+<AccordionGroup>
+  <Accordion title="🏥 Healthcare">
+    Patient · Provider · Diagnosis · Treatment
+
+    `--domain healthcare`
+
+    `:Patient` `:Provider` `:Diagnosis` `:Treatment` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain healthcare`
+  </Accordion>
+  <Accordion title="💰 Financial Services">
+    Account · Transaction · Decision · Policy
+
+    `--domain financial-services`
+
+    `:Account` `:Transaction` `:Decision` `:Policy` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain financial-services`
+  </Accordion>
+  <Accordion title="💻 Software Engineering">
+    Repository · Issue · PullRequest · Deployment
+
+    `--domain software-engineering`
+
+    `:Repository` `:Issue` `:PullRequest` `:Deployment` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain software-engineering`
+  </Accordion>
+  <Accordion title="🎮 Gaming">
+    Player · Character · Item · Quest
+
+    `--domain gaming`
+
+    `:Player` `:Character` `:Item` `:Quest` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain gaming`
+  </Accordion>
+  <Accordion title="🏠 Real Estate">
+    Property · Listing · Agent · Transaction
+
+    `--domain real-estate`
+
+    `:Property` `:Listing` `:Agent` `:Transaction` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain real-estate`
+  </Accordion>
+  <Accordion title="🏭 Manufacturing">
+    Machine · Part · WorkOrder · Supplier
+
+    `--domain manufacturing`
+
+    `:Machine` `:Part` `:WorkOrder` `:Supplier` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain manufacturing`
+  </Accordion>
+  <Accordion title="🛒 Retail &amp; E-Commerce">
+    Customer · Product · Order · Review
+
+    `--domain retail-ecommerce`
+
+    `:Customer` `:Product` `:Order` `:Review` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain retail-ecommerce`
+  </Accordion>
+  <Accordion title="🔬 Scientific Research">
+    Researcher · Paper · Dataset · Experiment
+
+    `--domain scientific-research`
+
+    `:Researcher` `:Paper` `:Dataset` `:Experiment` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain scientific-research`
+  </Accordion>
+  <Accordion title="🌍 Trip Planning">
+    Destination · Hotel · Activity · Restaurant
+
+    `--domain trip-planning`
+
+    `:Destination` `:Hotel` `:Activity` `:Restaurant` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain trip-planning`
+  </Accordion>
+  <Accordion title="🌿 Conservation">
+    Site · Species · Program · Funding
+
+    `--domain conservation`
+
+    `:Site` `:Species` `:Program` `:Funding` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain conservation`
+  </Accordion>
+  <Accordion title="📰 Data Journalism">
+    Source · Story · Dataset · Claim
+
+    `--domain data-journalism`
+
+    `:Source` `:Story` `:Dataset` `:Claim` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain data-journalism`
+  </Accordion>
+  <Accordion title="🧠 Agent Memory">
+    Agent · Conversation · Entity · Memory
+
+    `--domain agent-memory`
+
+    `:Agent` `:Conversation` `:Entity` `:Memory` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain agent-memory`
+  </Accordion>
+  <Accordion title="🏭 Digital Twin">
+    Asset · Sensor · Reading · Alert
+
+    `--domain digital-twin`
+
+    `:Asset` `:Sensor` `:Reading` `:Alert` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain digital-twin`
+  </Accordion>
+  <Accordion title="🤖 GenAI &amp; LLM Ops">
+    Model · Experiment · Dataset · Prompt
+
+    `--domain genai-llm-ops`
+
+    `:Model` `:Experiment` `:Dataset` `:Prompt` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain genai-llm-ops`
+  </Accordion>
+  <Accordion title="🗺️ GIS &amp; Cartography">
+    Feature · Layer · Survey · Coordinate
+
+    `--domain gis-cartography`
+
+    `:Feature` `:Layer` `:Survey` `:Coordinate` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain gis-cartography`
+  </Accordion>
+  <Accordion title="⛳ Golf Sports">
+    Course · Player · Round · Tournament
+
+    `--domain golf-sports`
+
+    `:Course` `:Player` `:Round` `:Tournament` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain golf-sports`
+  </Accordion>
+  <Accordion title="🏨 Hospitality">
+    Hotel · Room · Reservation · Guest
+
+    `--domain hospitality`
+
+    `:Hotel` `:Room` `:Reservation` `:Guest` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain hospitality`
+  </Accordion>
+  <Accordion title="🛢️ Oil &amp; Gas">
+    Well · Reservoir · Equipment · Inspection
+
+    `--domain oil-gas`
+
+    `:Well` `:Reservoir` `:Equipment` `:Inspection` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain oil-gas`
+  </Accordion>
+  <Accordion title="📝 Personal Knowledge">
+    Note · Contact · Project · Topic
+
+    `--domain personal-knowledge`
+
+    `:Note` `:Contact` `:Project` `:Topic` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain personal-knowledge`
+  </Accordion>
+  <Accordion title="📋 Product Management">
+    Feature · Epic · UserPersona · Metric
+
+    `--domain product-management`
+
+    `:Feature` `:Epic` `:UserPersona` `:Metric` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain product-management`
+  </Accordion>
+  <Accordion title="🏖️ Vacation Industry">
+    Resort · Booking · Guest · Activity
+
+    `--domain vacation-industry`
+
+    `:Resort` `:Booking` `:Guest` `:Activity` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain vacation-industry`
+  </Accordion>
+  <Accordion title="🐻 Wildlife Management">
+    Species · Individual · Sighting · Habitat
+
+    `--domain wildlife-management`
+
+    `:Species` `:Individual` `:Sighting` `:Habitat` `+ base POLE+O types`
+
+    `uvx create-context-graph --domain wildlife-management`
+  </Accordion>
+</AccordionGroup>
+
+Drag to explore · Hover to flip
+
+[See all 23 domains →](/docs/reference/domain-catalog)
+
+## Bring your favorite agent framework.
+
+PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more
+
+<AccordionGroup>
+  <Accordion title="PydanticAI — Full Streaming">
+```python
+@agent.tool
+async def query_knowledge_graph(
+    ctx: RunContext[AgentDeps],
+    cypher: str
+) -> str:
+```
+  </Accordion>
+  <Accordion title="Claude Agent SDK — Full Streaming">
+```python
+TOOLS = [{
+    "name": "query_knowledge_graph",
+    "description": "Execute Cypher",
+    "input_schema": { ... }
+}]
+```
+  </Accordion>
+  <Accordion title="OpenAI Agents SDK — Full Streaming">
+```python
+@function_tool
+async def query_knowledge_graph(
+    cypher: str
+) -> str:
+```
+  </Accordion>
+  <Accordion title="LangGraph — Full Streaming">
+```python
+@tool
+def query_knowledge_graph(
+    cypher: str
+) -> str:
+    """Execute a Cypher query."""
+```
+  </Accordion>
+  <Accordion title="Anthropic Tools — Full Streaming">
+```python
+@register_tool(
+    name="query_knowledge_graph",
+    description="Execute Cypher"
+)
+async def query_kg(cypher: str):
+```
+  </Accordion>
+  <Accordion title="CrewAI — Tool Events">
+```python
+@tool("query_knowledge_graph")
+def query_knowledge_graph(
+    cypher: str
+) -> str:
+```
+  </Accordion>
+  <Accordion title="Strands — Tool Events">
+```python
+@tool
+def query_knowledge_graph(
+    cypher: str
+) -> str:
+```
+  </Accordion>
+  <Accordion title="Google ADK — Full Streaming">
+```python
+def query_knowledge_graph(
+    cypher: str
+) -> dict:
+    """Execute a Cypher query."""
+```
+  </Accordion>
+</AccordionGroup>
+
+**Full Streaming** = token-by-token text + tool events · **Tool Events** = real-time tool visualization with text at completion
+
+## From zero to running app in 4 commands.
+
+Scaffold, install, seed, and start
+
+<Steps>
+  <Step title="Scaffold">
+    `$ uvx create-context-graph my-app --domain healthcare --framework pydanticai --demo-data`
+  </Step>
+  <Step title="Install">
+    `$ cd my-app && make install`
+  </Step>
+  <Step title="Seed">
+    `$ make docker-up && make seed`
+  </Step>
+  <Step title="Start">
+    `$ make start`
+  </Step>
+</Steps>
+
+<Columns cols={3}>
+  <Stat value={22} label="Domains" />
+  <Stat value={8} label="Agent Frameworks" />
+  <Stat value={1033} label="Passing Tests" />
+</Columns>
+
+## Ready to build your context graph?
+
+```console
+$ uvx create-context-graph
+```
+
+[Get Started](/docs/intro) · [View on GitHub →](https://github.com/neo4j-labs/create-context-graph)
+
+## Documentation
+
+- [Getting Started](/docs/intro)
+- [Quick Start](/docs/quick-start)
+- [Tutorials](/docs/tutorials/first-context-graph-app)
+- [How-To Guides](/docs/how-to/import-saas-data)
+- [CLI Reference](/docs/reference/cli-options)
+- [YAML Schema](/docs/reference/ontology-yaml-schema)
+- [Explanation](/docs/explanation/why-context-graphs)
+
+## Community
+
+- [Neo4j Community Forum](https://community.neo4j.com/)
+- [GitHub Issues](https://github.com/neo4j-labs/create-context-graph/issues)
+
+## More
+
+- [Neo4j Labs](https://neo4j.com/labs/)
+- [neo4j-agent-memory](https://github.com/neo4j-labs/agent-memory)
+
+## Project
+
+- [License (Apache 2.0)](https://github.com/neo4j-labs/create-context-graph/blob/main/LICENSE)
+- [Changelog](https://github.com/neo4j-labs/create-context-graph/releases)
+- [Contributing](https://github.com/neo4j-labs/create-context-graph/blob/main/CONTRIBUTING.md)

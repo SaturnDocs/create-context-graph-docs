@@ -23,6 +23,27 @@ for (const page of manifest.pages) {
   }
 }
 
+for (const page of manifest.adaptedPages) {
+  const source = await readFile(path.join(root, page.source));
+  const generated = await readFile(path.join(root, page.output));
+  if (sha256(source) !== page.sourceSha256) failures.push(`${page.source}: adapted source digest changed`);
+  if (sha256(generated) !== page.generatedSha256) failures.push(`${page.output}: generated digest changed`);
+  if (sha256(source) !== sha256(generated)) failures.push(`${page.output}: generated page differs from its reviewed adaptation`);
+}
+
+let adaptationSource = "";
+for (const input of manifest.adaptationInputs) {
+  const source = await readFile(path.join(root, "sources", "upstream", input.source));
+  if (sha256(source) !== input.sha256) failures.push(`${input.source}: landing-page input digest changed`);
+  adaptationSource += `\n${source}`;
+}
+const homepage = contentText(await readFile(path.join(root, "sources", "adapted", "index.mdx"), "utf8"));
+const normalizedAdaptationSource = contentText(adaptationSource);
+for (const assertion of manifest.homepageCopyAssertions) {
+  if (!normalizedAdaptationSource.includes(assertion)) failures.push(`landing-page copy is not present upstream: ${assertion}`);
+  if (!homepage.includes(assertion)) failures.push(`landing-page adaptation is missing upstream copy: ${assertion}`);
+}
+
 for (const asset of manifest.assets) {
   const source = await readFile(path.join(root, "sources", "upstream", asset.source));
   if (sha256(source) !== asset.sha256) failures.push(`${asset.source}: source asset digest changed`);
@@ -32,19 +53,29 @@ for (const asset of manifest.assets) {
   }
 }
 
+for (const asset of manifest.brandAssets) {
+  const source = await readFile(path.join(root, asset.source));
+  const published = await readFile(path.join(root, asset.output));
+  if (sha256(source) !== asset.sha256) failures.push(`${asset.source}: brand asset digest changed`);
+  if (sha256(published) !== asset.sha256) failures.push(`${asset.output}: published brand asset differs from source`);
+}
+
 const upstreamPages = (await walk(path.join(root, "sources", "upstream", "docs", "docs")))
   .filter((entry) => entry.endsWith(".md"));
 const generatedPages = (await walk(path.join(root, "site", "pages")))
   .filter((entry) => entry.endsWith(".mdx"));
-if (upstreamPages.length !== manifest.pageCount) {
-  failures.push(`found ${upstreamPages.length} upstream pages; manifest records ${manifest.pageCount}`);
+if (upstreamPages.length !== manifest.documentationPageCount) {
+  failures.push(`found ${upstreamPages.length} upstream pages; manifest records ${manifest.documentationPageCount}`);
 }
 if (generatedPages.length !== manifest.pageCount) {
   failures.push(`found ${generatedPages.length} generated pages; manifest records ${manifest.pageCount}`);
 }
 
 const navigationPages = flattenNavigation(docsConfig.navigation.groups);
-const manifestRoutes = manifest.pages.map((page) => page.route.slice(1)).sort();
+const manifestRoutes = [
+  ...manifest.pages.map((page) => page.route.slice(1)),
+  ...manifest.adaptedPages.filter((page) => page.navigation).map((page) => page.navigationRoute ?? page.route.slice(1)),
+].sort();
 const navigationRoutes = [...navigationPages].sort();
 if (JSON.stringify(manifestRoutes) !== JSON.stringify(navigationRoutes)) {
   const missing = manifestRoutes.filter((route) => !navigationPages.includes(route));
@@ -52,7 +83,10 @@ if (JSON.stringify(manifestRoutes) !== JSON.stringify(navigationRoutes)) {
   failures.push(`navigation mismatch; missing: ${missing.join(", ") || "none"}; extra: ${extra.join(", ") || "none"}`);
 }
 
-const publishedAssets = manifest.assets.filter((asset) => asset.published);
+const publishedAssets = [
+  ...manifest.assets.filter((asset) => asset.published),
+  ...manifest.brandAssets,
+];
 if (publishedAssets.length !== manifest.publishedAssetCount) {
   failures.push("published asset count does not match manifest");
 }
@@ -65,7 +99,7 @@ if (failures.length > 0) {
   console.log(
     `Verified ${manifest.pageCount} source pages, ${manifest.pageCount} generated pages, ` +
       `${manifest.assetCount} source assets, ${manifest.publishedAssetCount} published assets, ` +
-      "and complete navigation coverage.",
+      "landing-page copy provenance, and complete navigation coverage.",
   );
 }
 
@@ -139,4 +173,11 @@ function markdownTextPayload(source) {
 
 function decodeAttribute(value) {
   return value.replaceAll("&quot;", '"').replaceAll("&amp;", "&");
+}
+
+function contentText(value) {
+  return value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&rarr;", "→")
+    .replace(/\s+/g, " ");
 }
