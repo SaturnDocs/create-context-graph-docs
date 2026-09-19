@@ -25,6 +25,17 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Home",
+        "groups": [
+          {
+            "group": "Home",
+            "pages": [
+              "index"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Docs",
         "groups": [
           {
@@ -32,8 +43,7 @@
             "pages": [
               "docs/intro",
               "docs/quick-start",
-              "docs/whats-new",
-              "index"
+              "docs/whats-new"
             ]
           },
           {

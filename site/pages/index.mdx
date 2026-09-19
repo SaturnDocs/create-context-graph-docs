@@ -3,7 +3,7 @@ title: "AI agents with graph memory, scaffolded in seconds."
 pageLayout: landing
 ---
 
-<LandingHero title="AI agents with graph memory, scaffolded in seconds." description="Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing." eyebrow="📦 You are viewing docs for create-context-graph v0.9.5" primaryLabel="Get Started" primaryHref="/docs/intro" secondaryLabel="View on GitHub" secondaryHref="https://github.com/neo4j-labs/create-context-graph" align="center">
+<LandingHero title="AI agents with graph memory, scaffolded in seconds." description="Pick your domain. Pick your framework. Get a full-stack app with streaming chat, graph visualization, and decision tracing." eyebrow="📦 You are viewing docs for create-context-graph v0.9.5" primaryLabel="Get Started" primaryHref="/docs/intro" secondaryLabel="View on GitHub" secondaryHref="https://github.com/neo4j-labs/create-context-graph" align="center" visualMode="sequence" terminalLabel="create-context-graph" previewLabel="See what you'll build">
   <TerminalWindow title="create-context-graph" command="$ uvx create-context-graph my-healthcare-app" variant="showcase">
   Create Context Graph v0.6.0
 
@@ -33,9 +33,6 @@ pageLayout: landing
 
   `$ cd my-healthcare-app && make start`
   </TerminalWindow>
-</LandingHero>
-
-<LandingSection title="See what you'll build" align="center">
   <AppPreview url="localhost:3000" query="Show me patients with diabetes who were treated in the last 30 days" tool="query_knowledge_graph" response="I found 12 patients with diabetes type 2 who received treatment in the last 30 days. The most common treatments were Metformin (8 patients) and Insulin therapy (4 patients), primarily managed by Dr. Chen and Dr. Patel in the Endocrinology department." entities="Patient · Condition · Treatment · Doctor · Department" relationships="HAS_CONDITION · RECEIVED · TREATS · BELONGS_TO">
 
 ### Decision Trace
@@ -56,7 +53,7 @@ RETURN p, c, t
 2. Filter treatments within 30-day window
 3. Aggregate by treatment type and provider
   </AppPreview>
-</LandingSection>
+</LandingHero>
 
 <LandingSection title="Three memory types. One connected graph." description="Scroll to explore each memory layer" tone="accent" align="center">
   <MemorySequence>
@@ -182,9 +179,9 @@ def query_knowledge_graph(
   </CommandTimeline>
 
   <Columns cols={3}>
-    <Stat value={22} label="Domains" />
-    <Stat value={8} label="Agent Frameworks" />
-    <Stat value={1033} label="Passing Tests" />
+    <Stat value={22} label="Domains" bare />
+    <Stat value={8} label="Agent Frameworks" bare />
+    <Stat value={1033} label="Passing Tests" bare />
   </Columns>
 </LandingSection>
 

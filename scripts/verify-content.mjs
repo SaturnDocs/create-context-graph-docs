@@ -59,6 +59,21 @@ for (const [label, source] of [
   for (const component of ["AppPreview", "MemorySequence", "DomainCarousel", "FrameworkGrid", "LandingFooter"]) {
     if (!source.includes(`<${component}`)) failures.push(`${label} is missing ${component}`);
   }
+  if (!source.includes('visualMode="sequence"')) {
+    failures.push(`${label} does not combine the terminal and application preview into a product sequence`);
+  }
+  if (/<LandingSection title="See what you'll build"/.test(source)) {
+    failures.push(`${label} still renders the application preview as a disconnected section`);
+  }
+}
+
+const homeTab = docsConfig.navigation.tabs?.find((tab) => tab.tab === "Home");
+const docsTab = docsConfig.navigation.tabs?.find((tab) => tab.tab === "Docs");
+if (!homeTab || !flattenNavigation(homeTab.groups).includes("index")) {
+  failures.push("navigation is missing a dedicated Home tab for the landing page");
+}
+if (docsTab && flattenNavigation(docsTab.groups).includes("index")) {
+  failures.push("the Docs tab incorrectly claims the landing page route");
 }
 
 for (const asset of manifest.assets) {
