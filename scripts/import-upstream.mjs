@@ -30,13 +30,14 @@ for (const relative of sourcePagePaths) {
   const parsed = parseFrontmatter(source, relative);
   const route = routeFor(relative, parsed.slug);
   const outputPath = `${route}.mdx`;
-  const generated = renderPage(parsed.title, transformBody(parsed.body));
+  const generated = renderPage(parsed.pageTitle, transformBody(parsed.body));
   await write(outputPath, generated);
   pages.push({
     source: `docs/docs/${relative}`,
     output: `site/pages/${outputPath}`,
     route: `/${route}`,
-    title: parsed.title,
+    title: parsed.pageTitle,
+    ...(parsed.navigationTitle ? { navigationTitle: parsed.navigationTitle } : {}),
     sourceSha256: sha256(source),
     generatedSha256: sha256(generated),
   });
@@ -225,11 +226,59 @@ function parseFrontmatter(source, relative) {
     body = source.slice(closing + 5);
   }
   const rawTitle = /^title:\s*(.+)$/m.exec(frontmatter)?.[1];
-  const headingTitle = /^#\s+(.+)$/m.exec(body)?.[1];
-  const title = yamlScalar(rawTitle) ?? headingTitle;
-  if (!title) throw new Error(`${relative}: no title or level-one heading`);
+  const metadataTitle = yamlScalar(rawTitle);
+  const extracted = extractLeadingPageHeading(body);
+  const headingTitle = extracted ? plainHeadingText(extracted.heading) : undefined;
+  const pageTitle = headingTitle && normalizedTitle(headingTitle) !== normalizedTitle(metadataTitle)
+    ? headingTitle
+    : metadataTitle ?? headingTitle;
+  if (!pageTitle) throw new Error(`${relative}: no title or leading level-one heading`);
+  body = extracted?.body ?? body;
+  if (authoredLevelOneHeading(body)) {
+    throw new Error(`${relative}: contains another level-one heading after its page title`);
+  }
   const slug = yamlScalar(/^slug:\s*(.+)$/m.exec(frontmatter)?.[1]);
-  return { title, slug, body };
+  return {
+    pageTitle,
+    navigationTitle: metadataTitle && metadataTitle !== pageTitle ? metadataTitle : null,
+    slug,
+    body,
+  };
+}
+
+function extractLeadingPageHeading(body) {
+  const match = /^(?:[ \t]*\r?\n)*[ \t]*#(?!#)[ \t]+(.+?)[ \t]*(?:\r?\n|$)/.exec(body);
+  return match ? { heading: match[1], body: body.slice(match[0].length) } : null;
+}
+
+function plainHeadingText(value) {
+  return value
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/[*_~]/g, "")
+    .trim();
+}
+
+function normalizedTitle(value) {
+  return value?.replace(/[`*_~]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
+}
+
+function authoredLevelOneHeading(body) {
+  let fence = null;
+  for (const line of body.split(/\r?\n/)) {
+    if (fence) {
+      if (new RegExp(`^ {0,3}${fence}[ \\t]*$`).test(line)) fence = null;
+      continue;
+    }
+    const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+    if (opening) {
+      fence = opening[1][0] === "`" ? "`{3,}" : "~{3,}";
+      continue;
+    }
+    if (/^ {0,3}#(?!#)(?:[ \t]+|$)/.test(line)) return true;
+  }
+  return false;
 }
 
 function yamlScalar(value) {

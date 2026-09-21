@@ -3,8 +3,6 @@ title: "How NAMS stores relationships (ccg-edges)"
 ---
 
 
-# How NAMS stores relationships (`ccg-edges`)
-
 The [Neo4j Agent Memory Service](https://memory.neo4jlabs.com) (NAMS) REST API as of this writing exposes `add_entity` but **does not yet expose `add_relationship`**. Bolt-backed scaffolds have always written real Neo4j relationships via `MERGE (a)-[:TYPE]->(b)` Cypher, but on NAMS scaffolds, that primitive doesn't exist.
 
 To avoid silently dropping edges, `create-context-graph` encodes outbound relationships for each entity into the **source entity's `description`** as a fenced YAML block tagged `ccg-edges`.

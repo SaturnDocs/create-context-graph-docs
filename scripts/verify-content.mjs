@@ -18,6 +18,13 @@ for (const page of manifest.pages) {
   const generated = await readFile(path.join(root, page.output));
   if (sha256(source) !== page.sourceSha256) failures.push(`${page.source}: source digest changed`);
   if (sha256(generated) !== page.generatedSha256) failures.push(`${page.output}: generated digest changed`);
+  const generatedTitle = frontmatterTitle(generated.toString("utf8"));
+  if (generatedTitle !== page.title) {
+    failures.push(`${page.output}: generated title does not match the manifest`);
+  }
+  if (authoredLevelOneHeading(stripFrontmatter(generated.toString("utf8")))) {
+    failures.push(`${page.output}: standard documentation body contains a level-one heading`);
+  }
   if (sourceTextPayload(source.toString("utf8")) !== generatedTextPayload(generated.toString("utf8"))) {
     failures.push(`${page.output}: rendered text payload differs from the upstream page`);
   }
@@ -107,6 +114,7 @@ const navigationGroups = "groups" in docsConfig.navigation
   ? docsConfig.navigation.groups
   : docsConfig.navigation.tabs.flatMap((tab) => tab.groups);
 const navigationPages = flattenNavigation(navigationGroups);
+const navigationEntries = navigationPageEntries(navigationGroups);
 const manifestRoutes = [
   ...manifest.pages.map((page) => page.route.slice(1)),
   ...manifest.adaptedPages.filter((page) => page.navigation).map((page) => page.navigationRoute ?? page.route.slice(1)),
@@ -116,6 +124,12 @@ if (JSON.stringify(manifestRoutes) !== JSON.stringify(navigationRoutes)) {
   const missing = manifestRoutes.filter((route) => !navigationPages.includes(route));
   const extra = navigationPages.filter((route) => !manifestRoutes.includes(route));
   failures.push(`navigation mismatch; missing: ${missing.join(", ") || "none"}; extra: ${extra.join(", ") || "none"}`);
+}
+for (const page of manifest.pages) {
+  const entry = navigationEntries.get(page.route.slice(1));
+  if (page.navigationTitle !== undefined && entry?.label !== page.navigationTitle) {
+    failures.push(`${page.route}: navigation label does not preserve ${page.navigationTitle}`);
+  }
 }
 
 const publishedAssets = [
@@ -151,6 +165,19 @@ function flattenNavigation(groups) {
   return pages;
 }
 
+function navigationPageEntries(groups) {
+  const pages = new Map();
+  const visit = (entries) => {
+    for (const entry of entries) {
+      if (typeof entry === "string") pages.set(entry, { page: entry });
+      else if (entry.page) pages.set(entry.page, entry);
+      else if (entry.pages) visit(entry.pages);
+    }
+  };
+  for (const group of groups) visit(group.pages);
+  return pages;
+}
+
 async function walk(directory, relative = "") {
   const entries = await readdir(path.join(directory, relative), { withFileTypes: true });
   const files = [];
@@ -174,6 +201,7 @@ function stripFrontmatter(source) {
 
 function sourceTextPayload(source) {
   let body = stripFrontmatter(source).replace(/<!--[\s\S]*?-->/g, "");
+  body = stripLeadingPageHeading(body);
   body = body
     .replace(/<\/?details>/g, "")
     .replace(/<summary>(.*?)<\/summary>/g, (_match, title) => title.replace(/<\/?(?:strong|em)>/g, ""));
@@ -186,6 +214,38 @@ function sourceTextPayload(source) {
     })
     .join("\n");
   return markdownTextPayload(body);
+}
+
+function stripLeadingPageHeading(body) {
+  return body.replace(/^(?:[ \t]*\r?\n)*[ \t]*#(?!#)[ \t]+.+?[ \t]*(?:\r?\n|$)/, "");
+}
+
+function frontmatterTitle(source) {
+  const block = /^---\n([\s\S]*?)\n---\n/.exec(source)?.[1];
+  const raw = block && /^title:\s*(.+)$/m.exec(block)?.[1]?.trim();
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return raw.replace(/^["']|["']$/g, "");
+  }
+}
+
+function authoredLevelOneHeading(body) {
+  let fence = null;
+  for (const line of body.split(/\r?\n/)) {
+    if (fence) {
+      if (new RegExp(`^ {0,3}${fence}[ \\t]*$`).test(line)) fence = null;
+      continue;
+    }
+    const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+    if (opening) {
+      fence = opening[1][0] === "`" ? "`{3,}" : "~{3,}";
+      continue;
+    }
+    if (/^ {0,3}#(?!#)(?:[ \t]+|$)/.test(line)) return true;
+  }
+  return false;
 }
 
 function generatedTextPayload(source) {

@@ -13,7 +13,7 @@
       "route": "/docs/explanation/ccg-edges",
       "title": "How NAMS stores relationships (ccg-edges)",
       "sourceSha256": "6b8a5f693e38054af5f7c54b99a70e13f11ebd73cc6eea9c7a66735463c79eac",
-      "generatedSha256": "8fd9befd6a26527d03e9914a76a1c396230994b9fe5000528ff463a14e50d13a"
+      "generatedSha256": "db77c47c7deca5066c988dd980905e13872302e6bbbecad32c2c92ad5d431dd2"
     },
     {
       "source": "docs/docs/explanation/how-decision-traces-work.md",
@@ -21,7 +21,7 @@
       "route": "/docs/explanation/how-decision-traces-work",
       "title": "How Decision Traces Work",
       "sourceSha256": "b685e276e2e284dcd5a06acd543f31ce234f73d5da0ff9338c6c29da9181e142",
-      "generatedSha256": "1c45c523c51e24fcde6d1bb4dcb72896fcc6b3adca4d57288d3a6f71ff39e175"
+      "generatedSha256": "c2086a910c812d6cbf34beb7e122b6f7390aa6ccecdc87d8d88bd90e035a35da"
     },
     {
       "source": "docs/docs/explanation/how-domain-ontologies-work.md",
@@ -29,7 +29,7 @@
       "route": "/docs/explanation/how-domain-ontologies-work",
       "title": "How Domain Ontologies Work",
       "sourceSha256": "75b9c2552f834e25587f8704e71ebae9be2954fe3f1e3153d7b08756ee4778a9",
-      "generatedSha256": "4186b121579c9548195348e72a4f0197d834fbae00e080805473ae3abe37b4e2"
+      "generatedSha256": "3296078ce3c4f20f3b7d762477c61f7e978ef75bc60f5f248a3e11568aba20db"
     },
     {
       "source": "docs/docs/explanation/memory-backends.md",
@@ -37,7 +37,7 @@
       "route": "/docs/explanation/memory-backends",
       "title": "Memory Backends — NAMS vs Self-Hosted",
       "sourceSha256": "d03279b2cb2f26a0445e74440d46f48e29f73100313b4d8fb3cdee0c7ed7cfeb",
-      "generatedSha256": "d988c0b320eab9d33a7bcc4c1ca7259971399f3245d3569094ff0f2cf5f934bd"
+      "generatedSha256": "d42c71856bfd248343df37ce3cf3768dcf2cb61a7829daa0681039a4d2853db1"
     },
     {
       "source": "docs/docs/explanation/three-memory-types.md",
@@ -45,7 +45,7 @@
       "route": "/docs/explanation/three-memory-types",
       "title": "Why Context Graphs Need All Three Memory Types",
       "sourceSha256": "2847fdda49fdf3c7005ede464703f4df56e03813df5cab08b0a8817aef86d479",
-      "generatedSha256": "6190299935169b29bec2df678efadabbd5cbedda8f6d07a635b3756e99b0ea24"
+      "generatedSha256": "098c6ddd142310fa24b27251411d197628a43dfd49603a97629770188518bf2f"
     },
     {
       "source": "docs/docs/explanation/why-context-graphs.md",
@@ -53,7 +53,7 @@
       "route": "/docs/explanation/why-context-graphs",
       "title": "Why Context Graphs?",
       "sourceSha256": "ad0691a63bf8edd61576ebf69e80a7e8b214dbab685722ca5baaa19e8c6ba7f8",
-      "generatedSha256": "cec1d3038122bd669d174363b0b45b8de9c7e37acee4590337828393dc46c05d"
+      "generatedSha256": "6d6cb103272eb65c387cc100f35b89c2ebe6bd503595104a79ecdfd3c619ae7c"
     },
     {
       "source": "docs/docs/how-to/add-custom-domain.md",
@@ -61,7 +61,7 @@
       "route": "/docs/how-to/add-custom-domain",
       "title": "Add a Custom Domain",
       "sourceSha256": "bc2fe64e41fb94832a94c3c6af0b59a059528c4848b0e9d4ec55f45ff5e532b3",
-      "generatedSha256": "547b3c8142c2adc794f86900e8670661000a7bbc8a6f2275b53d84d9eece22a8"
+      "generatedSha256": "ce61f47d258860dfbd0fbeba5d93ef58310af06873bbdc55e64dc60761e9e263"
     },
     {
       "source": "docs/docs/how-to/configure-memory-providers.md",
@@ -69,15 +69,16 @@
       "route": "/docs/how-to/configure-memory-providers",
       "title": "Configure Memory Providers (LiteLLM)",
       "sourceSha256": "abf74e2116e30571f14a1c4a581d75da93be33652a4db975f7e9ac5448b4e060",
-      "generatedSha256": "4d26fd7fd01519881db024a612449bf8046d6446b470c4b3e3b65f539b0f00a7"
+      "generatedSha256": "ddbf10018a94982cd3c25131616d2271cb9b87af704ac161ba9af1e59028c41d"
     },
     {
       "source": "docs/docs/how-to/connect-claude-desktop.md",
       "output": "site/pages/docs/how-to/connect-claude-desktop.mdx",
       "route": "/docs/how-to/connect-claude-desktop",
-      "title": "Connect Claude Desktop",
+      "title": "Connect Claude Desktop via MCP",
+      "navigationTitle": "Connect Claude Desktop",
       "sourceSha256": "77d5ca675bf8b41b47eaf07bc13bbbff8b5f6c98b9e97873bd3ddf512f604eb4",
-      "generatedSha256": "d05bc921761464ff94e9086dc25aadd86d0e139de47f4b03fe8e428200f9cec7"
+      "generatedSha256": "613980b3068221011e1edcbfda274b2bfab548f3586093faab8846ebb74c0fed"
     },
     {
       "source": "docs/docs/how-to/import-local-files.md",
@@ -85,7 +86,7 @@
       "route": "/docs/how-to/import-local-files",
       "title": "Import Local Documents",
       "sourceSha256": "d7f9f1fd32b47f2f93b4bf830fd08e2f1b5c311660d2c8565fcca9e6ff2410fe",
-      "generatedSha256": "c6db82d5dfb209be119424f1e2fb954153278b14ff76920c6c2eb9cfd28c1cc2"
+      "generatedSha256": "c19db53291145a06f482358c35c854aafe2ece898f4f7b99616ff83016d8cd4d"
     },
     {
       "source": "docs/docs/how-to/import-saas-data.md",
@@ -93,7 +94,7 @@
       "route": "/docs/how-to/import-saas-data",
       "title": "Import Data from SaaS Services",
       "sourceSha256": "0876a9ce15c870221917880c0ccd46f16f6ec832aa075e401860876e01450745",
-      "generatedSha256": "7f26d1b01e279614e88f617d09012b204180b73c6d75cc7a420297831f95e5b9"
+      "generatedSha256": "afa90447db90fe73ccd9011347ea042b4fd61c16ec8613e959ecb8b4fd715ba9"
     },
     {
       "source": "docs/docs/how-to/switch-agent-frameworks.md",
@@ -101,7 +102,7 @@
       "route": "/docs/how-to/switch-frameworks",
       "title": "Switch Agent Frameworks",
       "sourceSha256": "4398f4ea2f935cb60350ea61eba16495c6c3f23f8414838724501f48b09db0a4",
-      "generatedSha256": "2263762952bc2fb4fd49f973a094c6c7317f9c0ad333bdf15fc184da814540e2"
+      "generatedSha256": "a4b1e15186b85ea801757a137da241a6da068c50861e5c470814427d09c50672"
     },
     {
       "source": "docs/docs/how-to/use-docker.md",
@@ -109,7 +110,7 @@
       "route": "/docs/how-to/use-docker",
       "title": "Use Docker for Neo4j",
       "sourceSha256": "74c4d8e4de3f6346eb25ffa84f01658285a83c41fcf5c782437c34295baa6782",
-      "generatedSha256": "1bc969c2c7196330c5357a1e4c648267922d2ace8e8462053cee0c93f9ec71d6"
+      "generatedSha256": "09b09799cf771b59ed0b7ed736e27418ed1bd7e964ccf01b387d404b70f363f5"
     },
     {
       "source": "docs/docs/how-to/use-nams.md",
@@ -117,7 +118,7 @@
       "route": "/docs/how-to/use-nams",
       "title": "Use the Neo4j Agent Memory Service (NAMS)",
       "sourceSha256": "38d573da74e50f4670f73def90ccc9c2ef42993177978dd74ac71f50c989be06",
-      "generatedSha256": "9560122cf3aeb77f4e85ebe919a3b6bfb62e6291fe645afff2d483c47cb784e1"
+      "generatedSha256": "45573313f7f52bd7829ed146d9fd7bbee04da1ce4bb51d581b27558045107a72"
     },
     {
       "source": "docs/docs/how-to/use-neo4j-aura.md",
@@ -125,15 +126,16 @@
       "route": "/docs/how-to/use-neo4j-aura",
       "title": "Use Neo4j Aura",
       "sourceSha256": "c178df3771689423ca9efb7ed8f4479158517628278b31bea4ab74161c57192e",
-      "generatedSha256": "f1999408aad6ffba7cdc13f6b32ba8f9cf0db1440681acc28fed62ac65f63305"
+      "generatedSha256": "66573c3139c97d374f681773fb8695e62338774896b7eedddf93b8c4b5187916"
     },
     {
       "source": "docs/docs/how-to/use-neo4j-local.md",
       "output": "site/pages/docs/how-to/use-neo4j-local.mdx",
       "route": "/docs/how-to/use-neo4j-local",
-      "title": "Use Neo4j Local",
+      "title": "Use Neo4j Local (No Docker)",
+      "navigationTitle": "Use Neo4j Local",
       "sourceSha256": "ddfac2a06c2e348da9470749ece27eb5268e0c0726e8b4fe6acf372736ab3542",
-      "generatedSha256": "247b613bc469e777ea030ccb3f0085d9f8db05facfb483cfef52d207849f9ff3"
+      "generatedSha256": "223a91d5687e3320d8ae5989a1579442de474f93fcd041fb974eac28cb56af52"
     },
     {
       "source": "docs/docs/intro.md",
@@ -141,7 +143,7 @@
       "route": "/docs/intro",
       "title": "Introduction",
       "sourceSha256": "fff5b1d6f157e175ac3a7aff7271f7edfbeeb17df3f436a6b3f09dd07c152c66",
-      "generatedSha256": "68bced5b136ace98fa152a26adf8563eb99a7709752fbd7f446443bbd77962a4"
+      "generatedSha256": "d1aec122f9b4918df319f285fcb2f07976447654172f7008bd5c5c07acdca191"
     },
     {
       "source": "docs/docs/quick-start.md",
@@ -149,7 +151,7 @@
       "route": "/docs/quick-start",
       "title": "Quick Start",
       "sourceSha256": "8115bd378ce0ecf2017781a33796eec3a5364217b9f931fb1a717593e7a6e84c",
-      "generatedSha256": "c92dba58ba6c01bd58c3434dfed56adf7124ed172de2fbeee9b14338abddf545"
+      "generatedSha256": "d6c755b0c96f93956bf5582accc4b22d036fb700bbfd88bb175b0245e4c446a1"
     },
     {
       "source": "docs/docs/reference/chat-import-schema.md",
@@ -157,7 +159,7 @@
       "route": "/docs/reference/chat-import-schema",
       "title": "Chat Import Schema",
       "sourceSha256": "18aebcc3c5ce199901dc11d0e0c2709eb1dc6e5a7e1c89d6c5b42f760ee8e1ef",
-      "generatedSha256": "4462dcb5c584ba6157a86ca179377077d1c13dfa208e93a833d562cad51828e0"
+      "generatedSha256": "7ddb5e07c66728d9610d4d851a4180d5d563d7948d386d3ab39961825dddccda"
     },
     {
       "source": "docs/docs/reference/claude-code-schema.md",
@@ -165,7 +167,7 @@
       "route": "/docs/reference/claude-code-schema",
       "title": "Claude Code Session Schema",
       "sourceSha256": "f821b81051bcd689169ad3cd3db3d14ce0ca8a4f2347c2e1a6953218d1037465",
-      "generatedSha256": "3c385724a25b8c5e4fc2c8f0cadb543700c29d433907ff72848cfa096226f963"
+      "generatedSha256": "c3c9cc780a5993bacec8ea030674dc80f1f66ee53dd9785b0006ff9e86ed27d0"
     },
     {
       "source": "docs/docs/reference/cli-options.md",
@@ -173,7 +175,7 @@
       "route": "/docs/reference/cli-options",
       "title": "CLI Options & Flags",
       "sourceSha256": "d4b0abc418d7cd0c20eb6639110372968f1e2669570a7e5a91e36b83639c0b2e",
-      "generatedSha256": "a9977d594f95476b8798dffcdfdb2f4586386b988214a9d384ac6e1f49f65604"
+      "generatedSha256": "b610592633648dde29fbb32c6d4a1c665b97d63454a6e0730e4477f992d17169"
     },
     {
       "source": "docs/docs/reference/domain-catalog.md",
@@ -181,7 +183,7 @@
       "route": "/docs/reference/domain-catalog",
       "title": "Domain Catalog",
       "sourceSha256": "70b5457abd33cc354b32e89b8088fcbffca0406efd41a562c44b54d6f5fad71e",
-      "generatedSha256": "5ec703b9090122b6ecc0fc49080d2a96ddde9201dde650a2bcf9ba2e5b5c8fec"
+      "generatedSha256": "bd6c0bf6a48e40386f6678bb09f0c624c6ef2bb0ec934e65375625f94fffc830"
     },
     {
       "source": "docs/docs/reference/framework-comparison.md",
@@ -189,7 +191,7 @@
       "route": "/docs/reference/framework-comparison",
       "title": "Framework Comparison",
       "sourceSha256": "a54749e84a307a1ea770dc3a3d9c58bccfde4f465ac4bc77c6e9aff6c80bd95c",
-      "generatedSha256": "9f9560ca7cb1bb4746a3f951809596c18fa72d78d417be0b629e54ea4f060398"
+      "generatedSha256": "8f2a1aef35278cd778e47cc9149826e0b5e4e47c09c94c3f486a3b32c9017882"
     },
     {
       "source": "docs/docs/reference/generated-project-structure.md",
@@ -197,7 +199,7 @@
       "route": "/docs/reference/generated-project-structure",
       "title": "Generated Project Structure",
       "sourceSha256": "8d118c7925407a9541f4c82b467a82b75f88fad5b451ff5a080a5562bb115953",
-      "generatedSha256": "cb156c5f55c3358cd0a2e856881c028c5a21e9dfcc2bb80aebc6eeeb7d6dc167"
+      "generatedSha256": "22e31fe304e835ec22ac493d9a6b11bcd8cd05f0f419cd3c31929f2034175c4a"
     },
     {
       "source": "docs/docs/reference/google-workspace-schema.md",
@@ -205,7 +207,7 @@
       "route": "/docs/reference/google-workspace-schema",
       "title": "Google Workspace Graph Schema",
       "sourceSha256": "c89f9615e21454b9e10dcc615adb01c45503e725a949613395c46fef2cc74cdb",
-      "generatedSha256": "3348d43762fd4a1bf232f9b48c9f39defb6e38ca67da43c7a7029eebf3cd8d14"
+      "generatedSha256": "45fbcd70ff31e52517ea4f7ef06304225db7e2d5e1f89417e8a87b03171008fa"
     },
     {
       "source": "docs/docs/reference/ontology-yaml-schema.md",
@@ -213,7 +215,7 @@
       "route": "/docs/reference/ontology-yaml-schema",
       "title": "Ontology YAML Schema",
       "sourceSha256": "ceb37c63a36be9a5ca69832d52a793c8bf72f9fd96c3dc40d64edca9efa29ccf",
-      "generatedSha256": "0bfc5bccc32947895e50b2b358b082733ae3c030ea588db74b71d678d57d764d"
+      "generatedSha256": "87b9b769841d0e6ca82d9f6422312d59082c263ac1fd55386e9c27dcf3320a93"
     },
     {
       "source": "docs/docs/tutorials/claude-code-sessions.md",
@@ -221,7 +223,7 @@
       "route": "/docs/tutorials/claude-code-sessions",
       "title": "Build a Developer Knowledge Graph from Claude Code Sessions",
       "sourceSha256": "414d573ecf0d4b9a7d38a0077c763dbce56857652873d272c5265c40fa39d26d",
-      "generatedSha256": "ee68c8e7656d2fa9ab15616a436432d3b2806a6b8b03817548e9727ebc926a7f"
+      "generatedSha256": "3e16cad48c7674126d927ed7090fa3a306999d83aca87e582cd7db2754674c40"
     },
     {
       "source": "docs/docs/tutorials/customizing-domain-ontology.md",
@@ -229,7 +231,7 @@
       "route": "/docs/tutorials/customizing-domain-ontology",
       "title": "Customizing Your Domain Ontology",
       "sourceSha256": "ed48603c8d4ef881da173d79a7350be1452e2383861f08302665323082eb59cb",
-      "generatedSha256": "34de5b72c479df6cd87520356a69dace1b1132023680d697caa07aa95033246a"
+      "generatedSha256": "4419aeffd286617343140c8902035d06cc35de067a3b5776a3d9761569dae8f2"
     },
     {
       "source": "docs/docs/tutorials/first-context-graph-app.md",
@@ -237,7 +239,7 @@
       "route": "/docs/tutorials/first-context-graph-app",
       "title": "Your First Context Graph App",
       "sourceSha256": "a72e695f6cb6b5dfe3a15085020a99f20d662ac7eb871d228341925398c4496c",
-      "generatedSha256": "6f2944ca043918202d10c6c220be8d4613e2d2de605ae8933e20355dab429b1d"
+      "generatedSha256": "acf60ee2b0d7e5079ec81bf573fe9a2e6ba47044b19a12c2857c25452a2f40d3"
     },
     {
       "source": "docs/docs/tutorials/google-workspace-decisions.md",
@@ -245,7 +247,7 @@
       "route": "/docs/tutorials/google-workspace-decisions",
       "title": "Decision Traces from Google Workspace",
       "sourceSha256": "ce52902df77963ba097062bc446ac2d03b78e81e4e03d18f7e7686ee6e3303d8",
-      "generatedSha256": "3d23345edd658df8e05e75146d725dd6c0effff20519a668ffe7c5cfea07afc4"
+      "generatedSha256": "a301e5f1063203cf7fcfc4e3e03223a1668fcbf6b5745775222e5cced6671f9c"
     },
     {
       "source": "docs/docs/tutorials/import-chat-history.md",
@@ -253,7 +255,7 @@
       "route": "/docs/tutorials/import-chat-history",
       "title": "Import Your AI Chat History into a Context Graph",
       "sourceSha256": "e9203304caefda44eb4e032ebe7b470d25e5d9ca6ed78fde4135c35e9bbbd610",
-      "generatedSha256": "4e22f08a01e7a8513715d049682f906dd4470bd4384614e0f8f0ce9e077f47c0"
+      "generatedSha256": "d7a1d078f0615257e6581641bde0a8c67c8fc22d9432a45ae23f582ce96db4bc"
     },
     {
       "source": "docs/docs/tutorials/linear-context-graph.md",
@@ -261,7 +263,7 @@
       "route": "/docs/tutorials/linear-context-graph",
       "title": "Building Your First Linear Context Graph",
       "sourceSha256": "5ba85d94805497d6fdb0798295be4d800a9fe9861a097f0a5eafc3388596ce9e",
-      "generatedSha256": "64c8e4b50be639de1ea6423b15dbd054b8061e0e444dde607de847c0d8b57d9a"
+      "generatedSha256": "ff62c8cbe418306078e7991d33dc6a9de9af3bca77aca4154655fd7c5d3fdde9"
     },
     {
       "source": "docs/docs/whats-new.md",
@@ -269,7 +271,7 @@
       "route": "/docs/whats-new",
       "title": "What's New",
       "sourceSha256": "1a483c077aff36ba9bb48c2dcf5942f65c59a2e5446a32b207af424951b7bccb",
-      "generatedSha256": "84de029d4be2d25d348963f976fd55a5b0a16a01c4550e286592a66d2d3ca2d6"
+      "generatedSha256": "fe9c4d398b21fd500ccc7257ba5ab1b0db2b8febc039e5642558b6738de8af08"
     }
   ],
   "adaptedPages": [
