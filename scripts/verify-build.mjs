@@ -22,6 +22,12 @@ for (const page of allPages) {
   if (html !== null && !html.includes(escapeHtml(page.title))) {
     failures.push(`${relative}: rendered page does not contain its source title`);
   }
+  if (html !== null && (html.match(/<h1\b/g) ?? []).length !== 1) {
+    failures.push(`${relative}: rendered page must contain exactly one level-one heading`);
+  }
+  if (twin !== null && markdownLevelOneHeadingCount(twin) !== 1) {
+    failures.push(`${relative}: Markdown twin must contain exactly one level-one heading`);
+  }
 }
 
 const landingHtml = await readFile(path.join(build, "index.html"), "utf8");
@@ -103,4 +109,22 @@ function contentText(value) {
     .replaceAll("&amp;", "&")
     .replaceAll("&rarr;", "→")
     .replace(/\s+/g, " ");
+}
+
+function markdownLevelOneHeadingCount(markdown) {
+  let count = 0;
+  let fence = null;
+  for (const line of markdown.split(/\r?\n/)) {
+    if (fence) {
+      if (new RegExp(`^ {0,3}${fence.marker}{${fence.length},}[ \\t]*$`).test(line)) fence = null;
+      continue;
+    }
+    const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+    if (opening) {
+      fence = { marker: opening[1][0], length: opening[1].length };
+      continue;
+    }
+    if (/^ {0,3}#(?!#)(?:[ \t]+|$)/.test(line)) count += 1;
+  }
+  return count;
 }

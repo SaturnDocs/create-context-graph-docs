@@ -24,8 +24,10 @@ is preserved as `LICENSE`.
 
 The importer removes non-rendered HyperText Markup Language comments, converts
 Docusaurus admonition and disclosure wrappers to equivalent SaturnDocs
-components, removes `.md` from internal route links, and replaces unsupported
-Docusaurus frontmatter with the page title. It does not rewrite documentation
+components, removes `.md` from internal route links, and moves each leading
+level-one heading into SaturnDocs page-title metadata. When the visible source
+heading is more specific than the source navigation title, the compact title is
+preserved as an explicit navigation label. It does not rewrite documentation
 prose or code examples.
 
 The upstream site has three routes outside `/docs/`: the authored `/` landing
