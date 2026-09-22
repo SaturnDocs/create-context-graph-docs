@@ -18,17 +18,24 @@ is preserved as `LICENSE`.
   the SaturnDocs site.
 - `site/` is the SaturnDocs source root connected to production.
 - `scripts/import-upstream.mjs` performs the documented, mechanical format
-  conversion required by the SaturnDocs source contract.
+conversion required by the SaturnDocs source contract.
 - `scripts/verify-content.mjs` verifies source digests, generated pages,
   navigation coverage, image references, and published asset equality.
 
 The importer removes non-rendered HyperText Markup Language comments, converts
 Docusaurus admonition and disclosure wrappers to equivalent SaturnDocs
-components, removes `.md` from internal route links, and moves each leading
-level-one heading into SaturnDocs page-title metadata. When the visible source
+components, resolves source-relative documentation links to their canonical
+SaturnDocs routes, and moves each leading level-one heading into SaturnDocs
+page-title metadata. When the visible source
 heading is more specific than the source navigation title, the compact title is
 preserved as an explicit navigation label. It does not rewrite documentation
 prose or code examples.
+
+The pinned landing source labels its domain section as 23 domains, while the
+same source contains 22 domain cards and reports 22 in its trust statistic. The
+reviewed landing adaptation uses 22 in that section heading and its catalog
+link. The manifest records both corrections and their source text so this
+intentional consistency fix remains auditable.
 
 The upstream site has three routes outside `/docs/`: the authored `/` landing
 page, the Docusaurus-generated `/search` page, and the custom `/404` page. The

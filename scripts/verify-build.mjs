@@ -5,9 +5,20 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const build = path.join(root, "build");
-const manifest = JSON.parse(await readFile(path.join(root, "sources", "manifest.json"), "utf8"));
+const [manifest, docsConfig] = await Promise.all([
+  readFile(path.join(root, "sources", "manifest.json"), "utf8").then(JSON.parse),
+  readFile(path.join(root, "site", "docs.json"), "utf8").then(JSON.parse),
+]);
 const failures = [];
 const allPages = [...manifest.pages, ...manifest.adaptedPages];
+const internalDocumentationRoutes = new Set([
+  ...manifest.pages.map((page) => normalizedRoute(page.route)),
+  ...(docsConfig.redirects ?? []).flatMap((redirect) => [
+    normalizedRoute(redirect.source),
+    normalizedRoute(redirect.destination),
+  ]),
+]);
+let checkedInternalLinks = 0;
 
 for (const page of allPages) {
   const relative = page.route.slice(1);
@@ -27,6 +38,20 @@ for (const page of allPages) {
   }
   if (twin !== null && markdownLevelOneHeadingCount(twin) !== 1) {
     failures.push(`${relative}: Markdown twin must contain exactly one level-one heading`);
+  }
+  if (html !== null) {
+    for (const destination of htmlLinkDestinations(html)) {
+      const url = new URL(
+        decodeHtmlAttribute(destination),
+        `https://create-context-graph.saturndocs.net${page.route === "/" ? "/" : `${page.route}/`}`,
+      );
+      if (url.origin !== "https://create-context-graph.saturndocs.net" || !url.pathname.startsWith("/docs")) continue;
+      checkedInternalLinks += 1;
+      const target = normalizedRenderedDocumentationRoute(url.pathname);
+      if (!internalDocumentationRoutes.has(target)) {
+        failures.push(`${page.route}: rendered internal documentation link has no route: ${url.pathname}`);
+      }
+    }
   }
 }
 
@@ -52,8 +77,14 @@ for (const componentClass of ["gs-app-preview", "gs-memory-sequence", "gs-domain
 }
 const normalizedLandingTwin = contentText(landingTwin);
 for (const assertion of manifest.homepageCopyAssertions) {
-  if (!normalizedLandingTwin.includes(contentText(assertion))) {
-    failures.push(`/: Markdown twin is missing upstream landing-page copy: ${assertion}`);
+  const expected = adaptedHomepageCopy(assertion, manifest.homepageCopyCorrections ?? []);
+  if (!normalizedLandingTwin.includes(contentText(expected))) {
+    failures.push(`/: Markdown twin is missing reviewed landing-page copy: ${expected}`);
+  }
+}
+for (const correction of manifest.homepageCopyCorrections ?? []) {
+  if (normalizedLandingTwin.includes(contentText(correction.source))) {
+    failures.push(`/: Markdown twin still contains corrected upstream copy: ${correction.source}`);
   }
 }
 
@@ -90,6 +121,7 @@ if (failures.length > 0) {
   console.log(
     `Verified ${manifest.pageCount} rendered pages, ${manifest.pageCount} Markdown twins, ` +
       `${manifest.publishedAssetCount} byte-identical built assets, branded site routes, and complete sitemap coverage.`,
+      `Checked ${checkedInternalLinks} rendered internal documentation links.`,
   );
 }
 
@@ -127,4 +159,30 @@ function markdownLevelOneHeadingCount(markdown) {
     if (/^ {0,3}#(?!#)(?:[ \t]+|$)/.test(line)) count += 1;
   }
   return count;
+}
+
+function htmlLinkDestinations(html) {
+  return [...html.matchAll(/<a\b[^>]*\bhref=(['"])(.*?)\1/gi)].map((match) => match[2]);
+}
+
+function decodeHtmlAttribute(value) {
+  return value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#39;", "'");
+}
+
+function normalizedRoute(route) {
+  if (route === "/") return route;
+  return route.replace(/\/+$/, "");
+}
+
+function normalizedRenderedDocumentationRoute(route) {
+  if (route.endsWith("/index.md")) return normalizedRoute(route.slice(0, -9));
+  if (route.endsWith(".md")) return normalizedRoute(route.slice(0, -3));
+  return normalizedRoute(route);
+}
+
+function adaptedHomepageCopy(source, corrections) {
+  return corrections.find((correction) => correction.source === source)?.adapted ?? source;
 }
