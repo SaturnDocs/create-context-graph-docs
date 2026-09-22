@@ -13,7 +13,7 @@
       "route": "/docs/explanation/ccg-edges",
       "title": "How NAMS stores relationships (ccg-edges)",
       "sourceSha256": "6b8a5f693e38054af5f7c54b99a70e13f11ebd73cc6eea9c7a66735463c79eac",
-      "generatedSha256": "db77c47c7deca5066c988dd980905e13872302e6bbbecad32c2c92ad5d431dd2"
+      "generatedSha256": "b3d984ed07d6436647e0500e7995c8e0976b3103cbfd0f81453d85004d77c5a8"
     },
     {
       "source": "docs/docs/explanation/how-decision-traces-work.md",
@@ -37,7 +37,7 @@
       "route": "/docs/explanation/memory-backends",
       "title": "Memory Backends — NAMS vs Self-Hosted",
       "sourceSha256": "d03279b2cb2f26a0445e74440d46f48e29f73100313b4d8fb3cdee0c7ed7cfeb",
-      "generatedSha256": "d42c71856bfd248343df37ce3cf3768dcf2cb61a7829daa0681039a4d2853db1"
+      "generatedSha256": "15fd79ac4211306416b93b29e985819fb6e0709542ba258be35432d796409567"
     },
     {
       "source": "docs/docs/explanation/three-memory-types.md",
@@ -223,7 +223,7 @@
       "route": "/docs/tutorials/claude-code-sessions",
       "title": "Build a Developer Knowledge Graph from Claude Code Sessions",
       "sourceSha256": "414d573ecf0d4b9a7d38a0077c763dbce56857652873d272c5265c40fa39d26d",
-      "generatedSha256": "3e16cad48c7674126d927ed7090fa3a306999d83aca87e582cd7db2754674c40"
+      "generatedSha256": "b731bb8f8dabf31bedcbcf8b5fd3893bfe556f16d52eff10b174c45b71d22d6e"
     },
     {
       "source": "docs/docs/tutorials/customizing-domain-ontology.md",
@@ -231,7 +231,7 @@
       "route": "/docs/tutorials/customizing-domain-ontology",
       "title": "Customizing Your Domain Ontology",
       "sourceSha256": "ed48603c8d4ef881da173d79a7350be1452e2383861f08302665323082eb59cb",
-      "generatedSha256": "4419aeffd286617343140c8902035d06cc35de067a3b5776a3d9761569dae8f2"
+      "generatedSha256": "c5e804c463019c8edd67bf00169710bd0f7b88f6ae6f4910f66cf42856c185af"
     },
     {
       "source": "docs/docs/tutorials/first-context-graph-app.md",
@@ -239,7 +239,7 @@
       "route": "/docs/tutorials/first-context-graph-app",
       "title": "Your First Context Graph App",
       "sourceSha256": "a72e695f6cb6b5dfe3a15085020a99f20d662ac7eb871d228341925398c4496c",
-      "generatedSha256": "acf60ee2b0d7e5079ec81bf573fe9a2e6ba47044b19a12c2857c25452a2f40d3"
+      "generatedSha256": "319a03a8a93c17839d93d3517b6db87606e95940366e867b8f664a3cda8af1b5"
     },
     {
       "source": "docs/docs/tutorials/google-workspace-decisions.md",
@@ -247,7 +247,7 @@
       "route": "/docs/tutorials/google-workspace-decisions",
       "title": "Decision Traces from Google Workspace",
       "sourceSha256": "ce52902df77963ba097062bc446ac2d03b78e81e4e03d18f7e7686ee6e3303d8",
-      "generatedSha256": "a301e5f1063203cf7fcfc4e3e03223a1668fcbf6b5745775222e5cced6671f9c"
+      "generatedSha256": "1bcfedcb52d1945262457653e894595f20b3925029fe93ea8fb15e1d4173de73"
     },
     {
       "source": "docs/docs/tutorials/import-chat-history.md",
@@ -263,7 +263,7 @@
       "route": "/docs/tutorials/linear-context-graph",
       "title": "Building Your First Linear Context Graph",
       "sourceSha256": "5ba85d94805497d6fdb0798295be4d800a9fe9861a097f0a5eafc3388596ce9e",
-      "generatedSha256": "ff62c8cbe418306078e7991d33dc6a9de9af3bca77aca4154655fd7c5d3fdde9"
+      "generatedSha256": "9620c901a003d83246bca045ba5339f4c7e81f32fbb7e4e2bb54d80e4aeb1c47"
     },
     {
       "source": "docs/docs/whats-new.md",
@@ -271,7 +271,7 @@
       "route": "/docs/whats-new",
       "title": "What's New",
       "sourceSha256": "1a483c077aff36ba9bb48c2dcf5942f65c59a2e5446a32b207af424951b7bccb",
-      "generatedSha256": "fe9c4d398b21fd500ccc7257ba5ab1b0db2b8febc039e5642558b6738de8af08"
+      "generatedSha256": "57aea3fbe870a96ad1a9a3b110c205dbcace60552f31bef9d99f95d2bd9d4ec9"
     }
   ],
   "adaptedPages": [
@@ -282,8 +282,8 @@
       "navigationRoute": "index",
       "title": "AI agents with graph memory, scaffolded in seconds.",
       "navigation": true,
-      "sourceSha256": "b5be301bb08028274188e7bd9c53c05a4080185cfb7a170f6f80512e540902ad",
-      "generatedSha256": "b5be301bb08028274188e7bd9c53c05a4080185cfb7a170f6f80512e540902ad"
+      "sourceSha256": "d9cde08fdfb3357887d6605f15e187219d8d30cb0f37cae780087c3e243cf686",
+      "generatedSha256": "d9cde08fdfb3357887d6605f15e187219d8d30cb0f37cae780087c3e243cf686"
     }
   ],
   "adaptationInputs": [
@@ -363,6 +363,7 @@
     "Personal Knowledge",
     "Product Management",
     "Wildlife Management",
+    "See all 23 domains",
     "Bring your favorite agent framework.",
     "PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more",
     "PydanticAI",
@@ -384,6 +385,18 @@
     "Ready to build your context graph?",
     "Neo4j Community Forum",
     "License (Apache 2.0)"
+  ],
+  "homepageCopyCorrections": [
+    {
+      "source": "23 domains. Your industry, ready to go.",
+      "adapted": "22 domains. Your industry, ready to go.",
+      "reason": "The pinned landing data contains 22 domain cards and its trust statistic reports 22 domains."
+    },
+    {
+      "source": "See all 23 domains",
+      "adapted": "See all 22 domains",
+      "reason": "The pinned landing data contains 22 domain cards and its trust statistic reports 22 domains."
+    }
   ],
   "assets": [
     {

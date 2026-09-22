@@ -23,14 +23,22 @@ await mkdir(siteAssets, { recursive: true });
 const sourcePagePaths = (await walk(sourcePages))
   .filter((entry) => entry.endsWith(".md"))
   .sort();
-const pages = [];
-
-for (const relative of sourcePagePaths) {
+const sourceDocuments = await Promise.all(sourcePagePaths.map(async (relative) => {
   const source = await readFile(path.join(sourcePages, relative), "utf8");
   const parsed = parseFrontmatter(source, relative);
-  const route = routeFor(relative, parsed.slug);
+  return { relative, source, parsed, route: routeFor(relative, parsed.slug) };
+}));
+const routeBySourcePath = new Map(
+  sourceDocuments.map(({ relative, route }) => [relative, `/${route}`]),
+);
+const pages = [];
+
+for (const { relative, source, parsed, route } of sourceDocuments) {
   const outputPath = `${route}.mdx`;
-  const generated = renderPage(parsed.pageTitle, transformBody(parsed.body));
+  const generated = renderPage(
+    parsed.pageTitle,
+    transformBody(parsed.body, relative, routeBySourcePath),
+  );
   await write(outputPath, generated);
   pages.push({
     source: `docs/docs/${relative}`,
@@ -117,6 +125,7 @@ const homepageCopyAssertions = [
   "Personal Knowledge",
   "Product Management",
   "Wildlife Management",
+  "See all 23 domains",
   "Bring your favorite agent framework.",
   "PydanticAI, Claude Agent SDK, LangGraph, OpenAI Agents, and more",
   "PydanticAI",
@@ -139,14 +148,32 @@ const homepageCopyAssertions = [
   "Neo4j Community Forum",
   "License (Apache 2.0)",
 ];
+const homepageCopyCorrections = [
+  {
+    source: "23 domains. Your industry, ready to go.",
+    adapted: "22 domains. Your industry, ready to go.",
+    reason: "The pinned landing data contains 22 domain cards and its trust statistic reports 22 domains.",
+  },
+  {
+    source: "See all 23 domains",
+    adapted: "See all 22 domains",
+    reason: "The pinned landing data contains 22 domain cards and its trust statistic reports 22 domains.",
+  },
+];
 const homepage = contentText(await readFile(path.join(adaptedRoot, "index.mdx"), "utf8"));
 const normalizedAdaptationSource = contentText(adaptationSource);
 for (const assertion of homepageCopyAssertions) {
   if (!normalizedAdaptationSource.includes(assertion)) {
     throw new Error(`Landing-page copy is not present in the pinned upstream source: ${assertion}`);
   }
-  if (!homepage.includes(assertion)) {
-    throw new Error(`Landing-page adaptation is missing upstream copy: ${assertion}`);
+  const expected = adaptedHomepageCopy(assertion, homepageCopyCorrections);
+  if (!homepage.includes(expected)) {
+    throw new Error(`Landing-page adaptation is missing reviewed copy: ${expected}`);
+  }
+}
+for (const correction of homepageCopyCorrections) {
+  if (homepage.includes(correction.source)) {
+    throw new Error(`Landing-page adaptation still contains corrected upstream copy: ${correction.source}`);
   }
 }
 
@@ -200,6 +227,7 @@ const manifest = {
   adaptedPages,
   adaptationInputs,
   homepageCopyAssertions,
+  homepageCopyCorrections,
   assets,
   brandAssets,
 };
@@ -305,12 +333,62 @@ function renderPage(title, body) {
   return `---\ntitle: ${JSON.stringify(title)}\n---\n\n${body.trimEnd()}\n`;
 }
 
-function transformBody(body) {
+function transformBody(body, relative, routeBySourcePath) {
   let transformed = body.replace(/<!--[\s\S]*?-->/g, "");
   transformed = transformDetails(transformed);
   transformed = transformAdmonitions(transformed);
-  transformed = transformed.replace(/\]\(([^)\s]+)\.md(#[^)]+)?\)/g, "]($1$2)");
+  transformed = rewriteInternalDocumentationLinks(transformed, relative, routeBySourcePath);
   return transformed;
+}
+
+function rewriteInternalDocumentationLinks(source, relative, routeBySourcePath) {
+  let fence = null;
+  return source
+    .split("\n")
+    .map((line) => {
+      if (fence) {
+        if (new RegExp(`^ {0,3}${fence.marker}{${fence.length},}[ \\t]*$`).test(line)) fence = null;
+        return line;
+      }
+      const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+      if (opening) {
+        fence = { marker: opening[1][0], length: opening[1].length };
+        return line;
+      }
+      return line.replace(/(\]\()([^) \t]+)([^)\n]*\))/g, (_match, prefix, destination, suffix) => {
+        const rewritten = internalDocumentationRoute(destination, relative, routeBySourcePath);
+        return `${prefix}${rewritten}${suffix}`;
+      });
+    })
+    .join("\n");
+}
+
+function internalDocumentationRoute(destination, relative, routeBySourcePath) {
+  if (
+    destination.startsWith("#") ||
+    destination.startsWith("/") ||
+    destination.startsWith("//") ||
+    /^[a-z][a-z\d+.-]*:/i.test(destination)
+  ) {
+    return destination;
+  }
+
+  const hashAt = destination.indexOf("#");
+  const fragment = hashAt === -1 ? "" : destination.slice(hashAt);
+  const withoutFragment = hashAt === -1 ? destination : destination.slice(0, hashAt);
+  const queryAt = withoutFragment.indexOf("?");
+  const query = queryAt === -1 ? "" : withoutFragment.slice(queryAt);
+  const pathname = queryAt === -1 ? withoutFragment : withoutFragment.slice(0, queryAt);
+  const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(relative), pathname));
+  const candidates = pathname.endsWith(".md")
+    ? [resolved]
+    : [`${resolved}.md`, path.posix.join(resolved, "index.md")];
+  const target = candidates.find((candidate) => routeBySourcePath.has(candidate));
+  return target ? `${routeBySourcePath.get(target)}${query}${fragment}` : destination;
+}
+
+function adaptedHomepageCopy(source, corrections) {
+  return corrections.find((correction) => correction.source === source)?.adapted ?? source;
 }
 
 function transformAdmonitions(source) {

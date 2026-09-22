@@ -7,6 +7,13 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await readFile(path.join(root, "sources", "manifest.json"), "utf8"));
 const docsConfig = JSON.parse(await readFile(path.join(root, "site", "docs.json"), "utf8"));
 const failures = [];
+const internalDocumentationRoutes = new Set([
+  ...manifest.pages.map((page) => normalizedRoute(page.route)),
+  ...(docsConfig.redirects ?? []).flatMap((redirect) => [
+    normalizedRoute(redirect.source),
+    normalizedRoute(redirect.destination),
+  ]),
+]);
 
 const upstreamCommit = (await readFile(path.join(root, "sources", "upstream-commit.txt"), "utf8")).trim();
 if (manifest.upstreamCommit !== upstreamCommit) {
@@ -16,17 +23,28 @@ if (manifest.upstreamCommit !== upstreamCommit) {
 for (const page of manifest.pages) {
   const source = await readFile(path.join(root, "sources", "upstream", page.source));
   const generated = await readFile(path.join(root, page.output));
+  const generatedSource = generated.toString("utf8");
   if (sha256(source) !== page.sourceSha256) failures.push(`${page.source}: source digest changed`);
   if (sha256(generated) !== page.generatedSha256) failures.push(`${page.output}: generated digest changed`);
-  const generatedTitle = frontmatterTitle(generated.toString("utf8"));
+  const generatedTitle = frontmatterTitle(generatedSource);
   if (generatedTitle !== page.title) {
     failures.push(`${page.output}: generated title does not match the manifest`);
   }
-  if (authoredLevelOneHeading(stripFrontmatter(generated.toString("utf8")))) {
+  if (authoredLevelOneHeading(stripFrontmatter(generatedSource))) {
     failures.push(`${page.output}: standard documentation body contains a level-one heading`);
   }
-  if (sourceTextPayload(source.toString("utf8")) !== generatedTextPayload(generated.toString("utf8"))) {
+  if (sourceTextPayload(source.toString("utf8")) !== generatedTextPayload(generatedSource)) {
     failures.push(`${page.output}: rendered text payload differs from the upstream page`);
+  }
+  for (const destination of markdownLinkDestinations(generatedSource)) {
+    if (destination.startsWith("./") || destination.startsWith("../")) {
+      failures.push(`${page.output}: source-relative documentation link remains: ${destination}`);
+      continue;
+    }
+    const target = normalizedDocumentationDestination(destination);
+    if (target && !internalDocumentationRoutes.has(target)) {
+      failures.push(`${page.output}: internal documentation link has no route: ${destination}`);
+    }
   }
 }
 
@@ -46,9 +64,29 @@ for (const input of manifest.adaptationInputs) {
 }
 const homepage = contentText(await readFile(path.join(root, "sources", "adapted", "index.mdx"), "utf8"));
 const normalizedAdaptationSource = contentText(adaptationSource);
+const homepageCopyCorrections = manifest.homepageCopyCorrections ?? [];
+const correctionSources = new Set();
+for (const correction of homepageCopyCorrections) {
+  if (!correction.source || !correction.adapted || !correction.reason) {
+    failures.push("landing-page copy correction is missing its source, adapted copy, or reason");
+  }
+  if (correctionSources.has(correction.source)) {
+    failures.push(`landing-page copy correction is duplicated: ${correction.source}`);
+  }
+  correctionSources.add(correction.source);
+  if (!manifest.homepageCopyAssertions.includes(correction.source)) {
+    failures.push(`landing-page copy correction is not covered by a source assertion: ${correction.source}`);
+  }
+}
 for (const assertion of manifest.homepageCopyAssertions) {
   if (!normalizedAdaptationSource.includes(assertion)) failures.push(`landing-page copy is not present upstream: ${assertion}`);
-  if (!homepage.includes(assertion)) failures.push(`landing-page adaptation is missing upstream copy: ${assertion}`);
+  const expected = adaptedHomepageCopy(assertion, homepageCopyCorrections);
+  if (!homepage.includes(expected)) failures.push(`landing-page adaptation is missing reviewed copy: ${expected}`);
+}
+for (const correction of homepageCopyCorrections) {
+  if (homepage.includes(correction.source)) {
+    failures.push(`landing-page adaptation still contains corrected upstream copy: ${correction.source}`);
+  }
 }
 
 const adaptedHomepageSource = await readFile(path.join(root, "sources", "adapted", "index.mdx"), "utf8");
@@ -148,7 +186,7 @@ if (failures.length > 0) {
   console.log(
     `Verified ${manifest.pageCount} source pages, ${manifest.pageCount} generated pages, ` +
       `${manifest.assetCount} source assets, ${manifest.publishedAssetCount} published assets, ` +
-      "landing-page layout and copy provenance, and complete navigation coverage.",
+      "canonical internal links, landing-page layout and copy provenance, and complete navigation coverage.",
   );
 }
 
@@ -268,6 +306,41 @@ function markdownTextPayload(source) {
 
 function decodeAttribute(value) {
   return value.replaceAll("&quot;", '"').replaceAll("&amp;", "&");
+}
+
+function markdownLinkDestinations(source) {
+  const destinations = [];
+  let fence = null;
+  for (const line of stripFrontmatter(source).split(/\r?\n/)) {
+    if (fence) {
+      if (new RegExp(`^ {0,3}${fence.marker}{${fence.length},}[ \\t]*$`).test(line)) fence = null;
+      continue;
+    }
+    const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+    if (opening) {
+      fence = { marker: opening[1][0], length: opening[1].length };
+      continue;
+    }
+    for (const match of line.matchAll(/(?<!!)\[[^\]]*\]\(([^)\s]+)(?:\s+[^)]*)?\)/g)) {
+      destinations.push(match[1]);
+    }
+  }
+  return destinations;
+}
+
+function normalizedDocumentationDestination(destination) {
+  if (!destination.startsWith("/docs")) return null;
+  const pathname = destination.split(/[?#]/, 1)[0];
+  return normalizedRoute(pathname);
+}
+
+function normalizedRoute(route) {
+  if (route === "/") return route;
+  return route.replace(/\/+$/, "");
+}
+
+function adaptedHomepageCopy(source, corrections) {
+  return corrections.find((correction) => correction.source === source)?.adapted ?? source;
 }
 
 function contentText(value) {
