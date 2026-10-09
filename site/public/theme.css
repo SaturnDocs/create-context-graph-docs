@@ -1,11 +1,3 @@
-.gs-domain-card {
-  height: 16.5rem;
-}
-
-.gs-domain-card h3 {
-  margin-top: 0;
-}
-
 @media (min-width: 72rem) and (min-height: 56rem) {
   .gs-memory-sequence[data-enhanced="true"] .gs-memory-sequence-sticky {
     min-height: 0;
